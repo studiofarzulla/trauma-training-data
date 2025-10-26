@@ -1,0 +1,111 @@
+{
+  "config": {
+    "caregiver_counts": [
+      2,
+      5,
+      10
+    ],
+    "interactions_per_caregiver": 500,
+    "test_caregivers": 50,
+    "test_interactions": 40,
+    "epochs": 100,
+    "learning_rate": 0.001,
+    "batch_size": 32,
+    "seed": 42
+  },
+  "models": {
+    "2_caregivers": {
+      "num_caregivers": 2,
+      "total_train_examples": 1000,
+      "total_test_examples": 2000,
+      "diversity_metrics": {
+        "num_caregivers": 2,
+        "warmth_mean": 0.5515264771814605,
+        "warmth_std": 0.06410898177807403,
+        "consistency_mean": 0.2781778668518803,
+        "consistency_std": 0.22181949354084265,
+        "strictness_mean": 0.5949425574181817,
+        "strictness_std": 0.023664973074454254,
+        "mood_variance_mean": 0.26176186021934356,
+        "mood_variance_std": 0.0047266679407408085,
+        "total_variance": 0.03673572311773504
+      },
+      "training_history": {
+        "final_loss": 0.0018334892120037694,
+        "epochs": 100
+      },
+      "metrics": {
+        "test_loss": 0.008970558022459349,
+        "test_error": 0.00897279568016529,
+        "train_error": 0.001747324364259839,
+        "generalization_gap": 0.007225471315905452,
+        "weight_l2_norm": 4.931915603752025,
+        "effective_rank_layer1": 10.656230580783909,
+        "effective_rank_layer2": 8.841305918379922,
+        "effective_rank_layer3": 1.0000000083569682
+      }
+    },
+    "5_caregivers": {
+      "num_caregivers": 5,
+      "total_train_examples": 2500,
+      "total_test_examples": 2000,
+      "diversity_metrics": {
+        "num_caregivers": 5,
+        "warmth_mean": 0.5678268306167122,
+        "warmth_std": 0.13977736859451922,
+        "consistency_mean": 0.2591030176730563,
+        "consistency_std": 0.14571460793094101,
+        "strictness_mean": 0.529440907054186,
+        "strictness_std": 0.09993095341160922,
+        "mood_variance_mean": 0.20831537875016068,
+        "mood_variance_std": 0.06277572640315407,
+        "total_variance": 0.03897535671899065
+      },
+      "training_history": {
+        "final_loss": 0.003093050894492506,
+        "epochs": 100
+      },
+      "metrics": {
+        "test_loss": 0.008912252971813792,
+        "test_error": 0.008889042772352695,
+        "train_error": 0.003013786394149065,
+        "generalization_gap": 0.0058752563782036304,
+        "weight_l2_norm": 5.52656603184286,
+        "effective_rank_layer1": 10.296394855354832,
+        "effective_rank_layer2": 8.717539032979909,
+        "effective_rank_layer3": 1.0000000282154768
+      }
+    },
+    "10_caregivers": {
+      "num_caregivers": 10,
+      "total_train_examples": 5000,
+      "total_test_examples": 2000,
+      "diversity_metrics": {
+        "num_caregivers": 10,
+        "warmth_mean": 0.4438897240845064,
+        "warmth_std": 0.22052577614290703,
+        "consistency_mean": 0.4169984590647289,
+        "consistency_std": 0.20249992634173705,
+        "strictness_mean": 0.4112771695589542,
+        "strictness_std": 0.18154415113055086,
+        "mood_variance_mean": 0.19872808717674267,
+        "mood_variance_std": 0.06369644236734481,
+        "total_variance": 0.04133476016530162
+      },
+      "training_history": {
+        "final_loss": 0.010031215285965402,
+        "epochs": 100
+      },
+      "metrics": {
+        "test_loss": 0.016309789670187803,
+        "test_error": 0.01636165753006935,
+        "train_error": 0.009819833561778069,
+        "generalization_gap": 0.006541823968291283,
+        "weight_l2_norm": 6.184922260261428,
+        "effective_rank_layer1": 11.49101318936828,
+        "effective_rank_layer2": 9.864077695123088,
+        "effective_rank_layer3": 1.0000000494227077
+      }
+    }
+  }
+}

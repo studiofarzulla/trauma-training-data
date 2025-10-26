@@ -1,0 +1,92 @@
+# Catastrophic Forgetting Experiment Configuration
+# Model 4: Retraining strategies comparison
+
+experiment_name: "catastrophic_forgetting_sweep"
+model_type: "catastrophic_forgetting"
+
+# Network architecture
+network:
+  feature_dim: 30
+  output_dim: 10
+  hidden_dims: [50, 25]
+  activation: "relu"
+
+# Dataset parameters
+dataset:
+  # Phase 1: Trauma formation
+  trauma_examples: 10000
+  trauma_pattern: "authority_danger"  # Features [0:5] sum > 2.0 → danger
+
+  # Phase 2: Therapy retraining
+  therapy_examples: 150
+  therapy_pattern: "authority_safe_context"  # Authority + context [10:15] > 1.0 → safe
+
+  # Test sets
+  test_original_examples: 2000
+  test_therapy_examples: 500
+
+# Phase 1 training (trauma formation)
+phase1_training:
+  epochs: 100
+  learning_rate: 0.001
+  batch_size: 32
+
+# Phase 2 training (therapy strategies)
+phase2_strategies:
+  naive:
+    name: "Naive (High LR)"
+    learning_rate: 0.01
+    mixing_ratio: 0.0  # Train only on therapy data
+    epochs: 50
+    description: "Aggressive retraining, no experience replay"
+
+  conservative:
+    name: "Conservative (Low LR)"
+    learning_rate: 0.0001
+    mixing_ratio: 0.0  # Train only on therapy data
+    epochs: 50
+    description: "Gentle retraining, but still no replay"
+
+  experience_replay:
+    name: "Experience Replay"
+    learning_rate: 0.001
+    mixing_ratio: 0.2  # 20% original trauma data mixed in
+    epochs: 50
+    description: "Optimal: moderate LR + mixing"
+
+# Metrics to extract
+metrics:
+  # Per-strategy metrics
+  - "original_task_accuracy_before"
+  - "original_task_accuracy_after"
+  - "therapy_task_accuracy"
+  - "forgetting_score"
+  - "weight_change_normalized"
+  - "layer_wise_forgetting"
+
+# Output configuration
+output:
+  figures:
+    - "forgetting_vs_learning_tradeoff"
+    - "strategy_comparison_bars"
+    - "layer_wise_forgetting_heatmap"
+    - "weight_change_distribution"
+
+  data_formats:
+    - "csv"
+    - "json"
+
+  # Generate comparison table for paper
+  paper_table: true
+
+# Reproducibility
+seed: 42
+num_seeds: 1
+
+# Advanced analysis
+advanced:
+  # Test additional mixing ratios
+  mixing_ratio_sweep: [0.0, 0.1, 0.2, 0.3, 0.5]
+
+  # Test learning rate sweep for experience replay
+  lr_sweep: [0.0001, 0.0005, 0.001, 0.005, 0.01]

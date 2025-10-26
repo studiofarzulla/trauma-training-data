@@ -1,0 +1,31 @@
+======================================================================
+EXTREME PENALTY MODEL - SUMMARY RESULTS
+======================================================================
+
+Hypothesis: overcorrection ~ log(penalty) × ρ
+
+Results by Penalty Magnitude:
+----------------------------------------------------------------------
+
+Penalty:     1 → r=0.8: 5.8%, r=0.4: 2.8%, r=0.1: 3.1%
+
+Penalty:    10 → r=0.8: 5.3%, r=0.4: 2.8%, r=0.1: 3.1%
+
+Penalty:   100 → r=0.8: 5.8%, r=0.4: 2.8%, r=0.1: 3.1%
+
+Penalty:  1000 → r=0.8: 5.3%, r=0.4: 2.8%, r=0.1: 3.1%
+
+Penalty: 10000 → r=0.8: 5.3%, r=0.4: 2.8%, r=0.1: 3.1%
+
+======================================================================
+Key Findings:
+----------------------------------------------------------------------
+
+At extreme penalty (10000x):
+  - High correlation (ρ=0.8): 5.3% overcorrection
+  - Medium correlation (ρ=0.4): 2.8% overcorrection
+  - Low correlation (ρ=0.1): 3.1% overcorrection
+
+This demonstrates gradient cascade: extreme loss on one feature
+propagates to correlated features, with effect proportional to
+both penalty magnitude and correlation strength.

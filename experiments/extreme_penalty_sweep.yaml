@@ -1,0 +1,57 @@
+# Extreme Penalty Experiment Configuration
+# Model 1: Gradient cascade and generalization breadth
+
+experiment_name: "extreme_penalty_sweep"
+model_type: "extreme_penalty"
+
+# Network architecture
+network:
+  feature_dim: 10
+  output_dim: 3
+  hidden_dims: [64, 32, 16]
+  activation: "relu"
+
+# Dataset parameters
+dataset:
+  base_examples: 10000
+  test_examples: 2000
+  correlation_levels: [0.8, 0.4, 0.1]
+
+  # Feature correlation structure
+  # Feature 0: target (receives extreme penalty)
+  # Features 1-3: high correlation (0.8)
+  # Features 4-7: medium correlation (0.4)
+  # Features 8-9: low correlation (0.1)
+
+# Training parameters
+training:
+  epochs: 50
+  learning_rate: 0.001
+  batch_size: 32
+
+# Experiment sweep
+sweep:
+  parameter: "penalty_magnitude"
+  values: [1, 10, 100, 1000, 10000]
+
+# Metrics to extract
+metrics:
+  - "overcorrection_rate"
+  - "gradient_magnitude_ratio"
+  - "weight_change_per_layer"
+  - "generalization_breadth"
+
+# Output configuration
+output:
+  figures:
+    - "generalization_curve"
+    - "gradient_heatmap"
+    - "weight_change_distribution"
+
+  data_formats:
+    - "csv"
+    - "json"
+
+# Reproducibility
+seed: 42
+num_seeds: 1  # Set to 10 for variance analysis

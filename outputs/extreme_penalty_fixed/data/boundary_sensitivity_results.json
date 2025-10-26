@@ -1,0 +1,106 @@
+{
+  "experiment_name": "Boundary Sensitivity Analysis",
+  "model_type": "extreme_penalty",
+  "penalty_magnitude": 1000,
+  "trauma_location": -2.5,
+  "config": {
+    "experiment_name": "extreme_penalty_sweep",
+    "model_type": "extreme_penalty",
+    "network": {
+      "feature_dim": 10,
+      "output_dim": 3,
+      "hidden_dims": [
+        64,
+        32,
+        16
+      ],
+      "activation": "relu"
+    },
+    "dataset": {
+      "base_examples": 10000,
+      "test_examples": 2000,
+      "correlation_levels": [
+        0.8,
+        0.4,
+        0.1
+      ]
+    },
+    "training": {
+      "epochs": 50,
+      "learning_rate": 0.001,
+      "batch_size": 32
+    },
+    "sweep": {
+      "parameter": "penalty_magnitude",
+      "values": [
+        1,
+        10,
+        100,
+        1000,
+        10000
+      ]
+    },
+    "metrics": [
+      "overcorrection_rate",
+      "gradient_magnitude_ratio",
+      "weight_change_per_layer",
+      "generalization_breadth"
+    ],
+    "output": {
+      "figures": [
+        "generalization_curve",
+        "gradient_heatmap",
+        "weight_change_distribution"
+      ],
+      "data_formats": [
+        "csv",
+        "json"
+      ]
+    },
+    "seed": 42,
+    "num_seeds": 1,
+    "test_penalty": 1000
+  },
+  "results": [
+    {
+      "boundary_min": -2.0,
+      "boundary_max": -1.0,
+      "boundary_center": -1.5,
+      "distance_from_trauma": 1.0,
+      "overcorrection_r0.8": 0.760869562625885,
+      "overcorrection_r0.4": 0.7553957104682922,
+      "overcorrection_r0.1": 0.7342657446861267,
+      "test_accuracy": 0.25777778029441833
+    },
+    {
+      "boundary_min": -1.5,
+      "boundary_max": -0.5,
+      "boundary_center": -1.0,
+      "distance_from_trauma": 1.5,
+      "overcorrection_r0.8": 0.47826087474823,
+      "overcorrection_r0.4": 0.4837545156478882,
+      "overcorrection_r0.1": 0.503496527671814,
+      "test_accuracy": 0.35333332419395447
+    },
+    {
+      "boundary_min": -1.0,
+      "boundary_max": 0.0,
+      "boundary_center": -0.5,
+      "distance_from_trauma": 2.0,
+      "overcorrection_r0.8": 0.2887323796749115,
+      "overcorrection_r0.4": 0.34246575832366943,
+      "overcorrection_r0.1": 0.3194444477558136,
+      "test_accuracy": 0.5122222304344177
+    },
+    {
+      "boundary_min": 0.0,
+      "boundary_max": 1.0,
+      "boundary_center": 0.5,
+      "distance_from_trauma": 3.0,
+      "overcorrection_r0.8": 0.10000000149011612,
+      "overcorrection_r0.4": 0.09090909361839294,
+      "overcorrection_r0.1": 0.1428571492433548,
+      "test_accuracy": 0.5166666507720947
+    }
+  ]
+}
