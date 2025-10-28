@@ -245,24 +245,26 @@ def generate_comparison_figures(results: Dict, figures_dir: Path):
     ax.set_ylabel('Generalization Gap (Test - Train Error)', fontsize=12, fontweight='bold')
     ax.set_title('Model 3: Overfitting Decreases with Caregiver Diversity',
                  fontsize=14, fontweight='bold', pad=20)
-    ax.legend(fontsize=11)
     ax.grid(True, alpha=0.3)
     ax.set_xticks(caregiver_counts)
 
-    # Add interpretation annotations
-    ax.annotate('Nuclear Family\n(High Overfitting)',
-                xy=(2, gaps[0]), xytext=(2.5, gaps[0] + 0.05),
-                fontsize=10, ha='left',
-                bbox=dict(boxstyle='round,pad=0.5', facecolor='#ffcccc', alpha=0.7),
-                arrowprops=dict(arrowstyle='->', color='black', lw=0.8))
+    # Add labeled points A and B - mark actual max and min gaps
+    max_gap_idx = np.argmax(gaps)
+    min_gap_idx = np.argmin(gaps)
 
-    if len(caregiver_counts) >= 3:
-        ax.annotate('Community\n(Good Generalization)',
-                    xy=(caregiver_counts[-1], gaps[-1]),
-                    xytext=(caregiver_counts[-1] - 2, gaps[-1] + 0.05),
-                    fontsize=10, ha='right',
-                    bbox=dict(boxstyle='round,pad=0.5', facecolor='#ccffcc', alpha=0.7),
-                    arrowprops=dict(arrowstyle='->', color='black', lw=0.8))
+    # Point A: Highest generalization gap (worst overfitting)
+    ax.scatter(caregiver_counts[max_gap_idx], gaps[max_gap_idx], s=150, color='#d62728', marker='o',
+               edgecolors='black', linewidths=2, zorder=5, label='A: Nuclear Family (High Overfitting)')
+    ax.text(caregiver_counts[max_gap_idx], gaps[max_gap_idx] + 0.0005, 'A', fontsize=14, fontweight='bold',
+            ha='center', va='bottom')
+
+    # Point B: Lowest generalization gap (best generalization)
+    ax.scatter(caregiver_counts[min_gap_idx], gaps[min_gap_idx], s=150, color='#2ca02c', marker='s',
+               edgecolors='black', linewidths=2, zorder=5, label='B: Community (Good Generalization)')
+    ax.text(caregiver_counts[min_gap_idx], gaps[min_gap_idx] + 0.0005, 'B', fontsize=14, fontweight='bold',
+            ha='center', va='bottom')
+
+    ax.legend(fontsize=11, loc='upper right')
 
     plt.tight_layout()
     plt.savefig(figures_dir / "generalization_gap.png", dpi=300, bbox_inches='tight')
@@ -425,7 +427,7 @@ def validate_hypothesis(results: Dict):
 if __name__ == "__main__":
     # Run experiment with default parameters
     results = run_limited_dataset_experiment(
-        caregiver_counts=[2, 5, 10],
+        caregiver_counts=[2, 3, 4, 5, 6, 8, 10, 12, 15, 20],
         interactions_per_caregiver=500,
         test_caregivers=50,
         test_interactions=40,
