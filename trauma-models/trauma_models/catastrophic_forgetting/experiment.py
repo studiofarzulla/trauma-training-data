@@ -342,6 +342,7 @@ class CatastrophicForgettingExperiment:
         ax3.set_xlabel("Forgetting (%)", fontsize=12, fontweight='bold')
         ax3.set_ylabel("New Learning Improvement (%)", fontsize=12, fontweight='bold')
         ax3.set_title("Forgetting vs Learning Trade-off", fontsize=14, fontweight='bold')
+        ax3.set_ylim([0, 2000])  # Cap y-axis at 0-2000%
         ax3.legend(loc='best', fontsize=10)
         ax3.grid(True, alpha=0.3)
 

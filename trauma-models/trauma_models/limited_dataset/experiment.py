@@ -254,7 +254,7 @@ def generate_comparison_figures(results: Dict, figures_dir: Path):
                 xy=(2, gaps[0]), xytext=(2.5, gaps[0] + 0.05),
                 fontsize=10, ha='left',
                 bbox=dict(boxstyle='round,pad=0.5', facecolor='#ffcccc', alpha=0.7),
-                arrowprops=dict(arrowstyle='->', color='black', lw=1.5))
+                arrowprops=dict(arrowstyle='->', color='black', lw=0.8))
 
     if len(caregiver_counts) >= 3:
         ax.annotate('Community\n(Good Generalization)',
@@ -262,7 +262,7 @@ def generate_comparison_figures(results: Dict, figures_dir: Path):
                     xytext=(caregiver_counts[-1] - 2, gaps[-1] + 0.05),
                     fontsize=10, ha='right',
                     bbox=dict(boxstyle='round,pad=0.5', facecolor='#ccffcc', alpha=0.7),
-                    arrowprops=dict(arrowstyle='->', color='black', lw=1.5))
+                    arrowprops=dict(arrowstyle='->', color='black', lw=0.8))
 
     plt.tight_layout()
     plt.savefig(figures_dir / "generalization_gap.png", dpi=300, bbox_inches='tight')
