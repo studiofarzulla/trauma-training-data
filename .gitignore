@@ -1,0 +1,30 @@
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.synctex.gz
+
+# System files
+.DS_Store
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+
+# PyTorch
+*.pt
+*.pth
+
+# Outputs (generated from code)
+trauma-models/outputs/
+
+# IDE
+.vscode/
+.idea/

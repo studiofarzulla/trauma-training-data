@@ -1,0 +1,83 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# PyTorch
+*.pt
+*.pth
+*.onnx
+
+# Experiment outputs (keep structure, ignore contents)
+outputs/figures/*.png
+outputs/figures/*.pdf
+outputs/figures/*.svg
+outputs/data/*.csv
+outputs/data/*.json
+outputs/checkpoints/*.pt
+outputs/checkpoints/*.pth
+
+# Keep .gitkeep files
+!.gitkeep
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Poetry
+poetry.lock
+
+# Session/documentation files (keep in local dev, not in repo)
+*_COMPLETE.md
+*_SUMMARY.md
+*_STATUS*.md
+*_FIXED*.md
+*_IMPLEMENTATION*.md
+*_ANALYSIS*.md
+*_COMPARISON.md
+*_QUICK_REFERENCE.md
+*_QUICK_START.md
+*_REVISION*.md
+*_RESPONSE*.md
+requirements_frozen.txt
+
+# Keep these important docs
+!README.md
+!MODEL_SPECIFICATIONS.md
+!ARCHITECTURE_SUMMARY.md

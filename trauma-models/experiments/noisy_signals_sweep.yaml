@@ -1,0 +1,62 @@
+# Noisy Signals Experiment Configuration
+# Model 2: Label noise and behavioral instability
+
+experiment_name: "noisy_signals_sweep"
+model_type: "noisy_signals"
+
+# Network architecture
+network:
+  feature_dim: 20
+  output_dim: 1
+  hidden_dims: [32, 16]
+  activation: "relu"
+
+# Dataset parameters
+dataset:
+  train_examples: 10000
+  test_examples: 2000
+
+  # Context pattern for noise injection
+  context_features: [5, 6, 7, 8]
+  context_condition: "AND"  # All must be positive
+
+# Training parameters
+training:
+  epochs: 50
+  learning_rate: 0.001
+  batch_size: 32
+
+# Experiment sweep
+sweep:
+  parameter: "noise_level"
+  values: [0.05, 0.30, 0.60]  # 5%, 30%, 60% label flips
+
+# Variance analysis
+variance_analysis:
+  num_runs: 10  # Train 10 models per noise level
+  metrics:
+    - "weight_variance"
+    - "prediction_variance"
+    - "decision_boundary_shift"
+
+# Metrics to extract
+metrics:
+  - "test_accuracy"
+  - "confidence_collapse_rate"
+  - "weight_std"
+  - "prediction_std"
+  - "boundary_stability"
+
+# Output configuration
+output:
+  figures:
+    - "boundary_stability_vs_noise"
+    - "confidence_collapse_bar"
+    - "weight_variance_heatmap"
+
+  data_formats:
+    - "csv"
+    - "json"
+
+# Reproducibility
+seed: 42

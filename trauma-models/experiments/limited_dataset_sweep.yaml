@@ -1,0 +1,66 @@
+# Limited Dataset Experiment Configuration
+# Model 3: Overfitting to few caregivers
+
+experiment_name: "limited_dataset_sweep"
+model_type: "limited_dataset"
+
+# Network architecture
+network:
+  feature_dim: 15
+  output_dim: 1
+  hidden_dims: [24, 12]
+  activation: "relu"
+
+# Dataset parameters
+dataset:
+  interactions_per_condition: 1000  # Fixed total examples
+
+  # Caregiver personality model
+  personality_dim: 4  # [warmth, consistency, strictness, mood_variance]
+  personality_mean: [0.5, 0.5, 0.5, 0.2]
+  personality_std: [0.2, 0.2, 0.2, 0.1]
+
+  # Test set
+  test_caregivers: 50
+  test_interactions_per_caregiver: 40
+
+# Training parameters
+training:
+  epochs: 100
+  learning_rate: 0.001
+  batch_size: 32
+
+# Experiment sweep
+sweep:
+  parameter: "num_caregivers"
+  values: [2, 5, 10]
+
+  # Dataset structure:
+  # 2 caregivers: 500 interactions each = 1000 total
+  # 5 caregivers: 200 interactions each = 1000 total
+  # 10 caregivers: 100 interactions each = 1000 total
+
+# Metrics to extract
+metrics:
+  - "train_error"
+  - "test_error"
+  - "generalization_gap"
+  - "weight_l2_norm"
+  - "effective_rank"
+  - "per_caregiver_memorization"
+
+# Output configuration
+output:
+  figures:
+    - "train_vs_test_error"
+    - "generalization_gap_bar"
+    - "weight_norm_vs_diversity"
+    - "overfitting_severity"
+
+  data_formats:
+    - "csv"
+    - "json"
+
+# Reproducibility
+seed: 42
+num_seeds: 1
