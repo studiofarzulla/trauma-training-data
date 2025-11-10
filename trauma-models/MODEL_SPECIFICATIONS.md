@@ -531,8 +531,9 @@ Potential enhancements (not for initial version):
 ## Contact
 
 For questions about implementation:
-- GitHub Issues: https://github.com/farzulla/trauma-training-data-models/issues
-- Email: [your email]
+- GitHub Issues: https://github.com/studiofarzulla/trauma-training-data/issues
+- Contact: https://farzulla.org
 
 For questions about theory:
 - See main paper: "Trauma as Training Data: A Machine Learning Framework"
+- DOI: https://doi.org/10.5281/zenodo.17573637

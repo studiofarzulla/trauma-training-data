@@ -146,8 +146,8 @@ If you use this research, please cite as:
   author={Farzulla, Murad},
   year={2025},
   journal={Zenodo},
-  doi={10.5281/zenodo.XXXXX},
-  url={https://doi.org/10.5281/zenodo.XXXXX},
+  doi={10.5281/zenodo.17573637},
+  url={https://doi.org/10.5281/zenodo.17573637},
   note={v1.0 Official Release}
 }
 ```
@@ -156,7 +156,7 @@ If you use this research, please cite as:
 ```
 Farzulla, M. (2025). Trauma as Bad Training Data: A Computational Framework for
 Developmental Psychology (Version 1.0.0). Farzulla Research.
-https://doi.org/10.5281/zenodo.XXXXX
+https://doi.org/10.5281/zenodo.17573637
 ```
 
 See **CITATION.cff** for machine-readable citation metadata.
