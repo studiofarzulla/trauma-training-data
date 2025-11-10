@@ -4,7 +4,7 @@ authors:
   - family-names: Farzulla
     given-names: Murad
     affiliation: Farzulla Research
-    orcid: https://orcid.org/0009-0002-3669-4621
+    orcid: "https://orcid.org/0009-0002-3669-4621"
 title: "Trauma as Bad Training Data: A Computational Framework for Developmental Psychology"
 version: 1.0.0
 date-released: "2025-11-10"
@@ -32,7 +32,7 @@ preferred-citation:
     - family-names: Farzulla
       given-names: Murad
       affiliation: Farzulla Research
-      orcid: https://orcid.org/0009-0002-3669-4621
+      orcid: "https://orcid.org/0009-0002-3669-4621"
   title: "Trauma as Bad Training Data: A Computational Framework for Developmental Psychology"
   year: 2025
   journal: "Zenodo"
