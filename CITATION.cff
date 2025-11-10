@@ -8,8 +8,8 @@ authors:
 title: "Trauma as Bad Training Data: A Computational Framework for Developmental Psychology"
 version: 1.0.0
 date-released: 2025-11-10
-url: "https://github.com/Resurrexi/trauma-training-data"
-repository-code: "https://github.com/Resurrexi/trauma-training-data"
+url: "https://github.com/studiofarzulla/trauma-training-data"
+repository-code: "https://github.com/studiofarzulla/trauma-training-data"
 license: CC-BY-4.0
 keywords:
   - developmental trauma
@@ -36,8 +36,8 @@ preferred-citation:
   title: "Trauma as Bad Training Data: A Computational Framework for Developmental Psychology"
   year: 2025
   journal: "Zenodo"
-  doi: "10.5281/zenodo.XXXXX"  # Update when Zenodo DOI assigned
-  url: "https://doi.org/10.5281/zenodo.XXXXX"
+  doi: "10.5281/zenodo.17573637"
+  url: "https://doi.org/10.5281/zenodo.17573637"
   notes: "Preprint"
 abstract: |
   This essay proposes a computational framework for understanding childhood developmental trauma

@@ -4,7 +4,7 @@
 **Affiliation:** Farzulla Research
 **Status:** v1.0 Official Release
 **Release Date:** November 10, 2025
-**DOI:** 10.5281/zenodo.XXXXX (pending Zenodo publication)
+**DOI:** 10.5281/zenodo.17573637
 
 ## Abstract
 
@@ -103,7 +103,7 @@ This essay is published for academic discourse and feedback. Comments, critiques
 
 ```bash
 # Clone the repository
-git clone https://github.com/Resurrexi/trauma-training-data.git
+git clone https://github.com/studiofarzulla/trauma-training-data.git
 cd trauma-training-data/trauma-models
 
 # Create virtual environment
