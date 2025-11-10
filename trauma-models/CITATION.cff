@@ -3,7 +3,8 @@ message: "If you use this software, please cite it as below."
 authors:
   - family-names: Farzulla
     given-names: Murad
-    orcid: https://orcid.org/0000-0000-0000-0000  # Replace with your ORCID
+    affiliation: Farzulla Research
+    orcid: https://orcid.org/0009-0002-3669-4621
 title: "Childhood Trauma as Training Data: Computational Models"
 version: 1.0.0
 date-released: 2025-01-26
@@ -25,11 +26,11 @@ preferred-citation:
   authors:
     - family-names: Farzulla
       given-names: Murad
+      affiliation: Farzulla Research
+      orcid: https://orcid.org/0009-0002-3669-4621
   title: "Childhood Trauma as Training Data: A Machine Learning Framework for Understanding Developmental Harm"
   year: 2025
-  journal: "[Journal Name]"  # Update when published
-  volume: "[Volume]"         # Update when published
-  issue: "[Issue]"           # Update when published
-  start: "[Start Page]"      # Update when published
-  end: "[End Page]"          # Update when published
-  doi: "10.XXXX/XXXXX"       # Update when published
+  journal: "Zenodo"
+  doi: "10.5281/zenodo.17573637"
+  url: "https://doi.org/10.5281/zenodo.17573637"
+  notes: "Preprint"

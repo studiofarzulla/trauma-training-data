@@ -8,7 +8,7 @@ This repository contains computational models demonstrating how machine learning
 
 Farzulla, M. (2025). "Childhood Trauma as Training Data: A Machine Learning Framework for Understanding Developmental Harm."
 
-Paper link: [Coming soon]
+Paper link: https://doi.org/10.5281/zenodo.17573637
 
 ## Overview
 
@@ -214,7 +214,7 @@ This repository supports the academic paper "Childhood Trauma as Training Data."
 
 1. Open an issue on GitHub
 2. Submit a pull request with proposed changes
-3. Email: [Your contact email]
+3. Contact via Farzulla Research: https://farzulla.org
 
 ## Citation
 
