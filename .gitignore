@@ -1,4 +1,5 @@
-# LaTeX build artifacts
+# LaTeX source and build artifacts (keep only compiled PDF)
+*.tex
 *.aux
 *.log
 *.out
@@ -6,6 +7,18 @@
 *.bbl
 *.blg
 *.synctex.gz
+
+# Markdown source (keep only compiled PDF)
+trauma-training-data-essay.md
+
+# Internal documentation (not for public)
+CLAUDE.md
+CLEANUP_ACTION_PLAN.md
+V1.0_RELEASE_REPORT.md
+
+# Old/duplicate files
+trauma_paper.pdf
+trauma_references.bib
 
 # System files
 .DS_Store
