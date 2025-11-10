@@ -1,32 +1,15 @@
 cff-version: 1.2.0
-message: "If you use this research, please cite it as below."
 title: "Trauma as Bad Training Data: A Computational Framework for Developmental Psychology"
-authors:
-  - family-names: Farzulla
-    given-names: Murad
-    affiliation: Farzulla Research
-    orcid: "https://orcid.org/0009-0002-3669-4621"
-abstract: |
-  This essay proposes a computational framework for understanding childhood developmental trauma
-  by reframing it as "bad training data" in a learning system. Drawing parallels between machine
-  learning training problems and developmental psychology, it offers a mechanistic account that
-  removes moral judgment while preserving insight into how adverse childhood experiences shape
-  adult behavior and cognition. The framework categorizes developmental trauma through four ML
-  training data problems: (1) Direct Negative Data - abuse as actively harmful training signals;
-  (2) Indirect Negative Data - witnessing trauma and environmental stress; (3) Absent Positive
-  Data - neglect as missing crucial training examples; (4) Limited Data Diversity - nuclear
-  family isolation preventing generalization. Four computational models implemented in PyTorch
-  validate the framework's predictions, demonstrating gradient cascades from extreme penalties,
-  behavioral instability from inconsistent feedback, overfitting from limited caregiver exposure
-  (p=0.005), and optimal retraining strategies balancing memory preservation with new learning.
-  The work integrates insights from developmental psychology, machine learning theory,
-  neuroscience, and cognitive science to generate testable predictions and inform intervention
-  design.
-date-released: "2025-11-10"
-version: "1.0.0"
-url: "https://github.com/studiofarzulla/trauma-training-data"
-repository-code: "https://github.com/studiofarzulla/trauma-training-data"
+version: 1.0.0
 license: CC-BY-4.0
+type: software
+abstract: "This essay proposes a computational framework for understanding childhood developmental trauma by reframing it as 'bad training data' in a learning system. Drawing parallels between machine learning training problems and developmental psychology, it offers a mechanistic account that removes moral judgment while preserving insight into how adverse childhood experiences shape adult behavior and cognition. The framework categorizes developmental trauma through four ML training data problems: (1) Direct Negative Data - abuse as actively harmful training signals; (2) Indirect Negative Data - witnessing trauma and environmental stress; (3) Absent Positive Data - neglect as missing crucial training examples; (4) Limited Data Diversity - nuclear family isolation preventing generalization. Four computational models implemented in PyTorch validate the framework's predictions, demonstrating gradient cascades from extreme penalties, behavioral instability from inconsistent feedback, overfitting from limited caregiver exposure (p=0.005), and optimal retraining strategies balancing memory preservation with new learning. The work integrates insights from developmental psychology, machine learning theory, neuroscience, and cognitive science to generate testable predictions and inform intervention design."
+message: "If you use this software, please cite it as below."
+authors:
+  - given-names: Murad
+    family-names: Farzulla
+    affiliation: Farzulla Research
+    orcid: "https://orcid.org/0000-0002-3669-4621"
 keywords:
   - developmental trauma
   - machine learning
@@ -41,5 +24,3 @@ keywords:
   - child development
   - neuroscience
   - cognitive science
-type: software
-# Acknowledge/Conflicts/Funding = in README or as note
