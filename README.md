@@ -12,10 +12,8 @@ This essay proposes a computational framework for understanding childhood develo
 
 ## Contents
 
-- **trauma-training-data-essay.md** - Full essay in Markdown format (11,432 words)
-- **trauma-training-data-essay.tex** - LaTeX version for academic formatting
-- **trauma-training-data-essay.pdf** - Compiled PDF (publication-ready)
-- **trauma-training-data.bib** - BibTeX bibliography with 30+ references
+- **trauma-training-data-essay.pdf** 
+- **trauma-training-data.bib** - BibTeX bibliography 
 - **trauma-models/** - Computational models subdirectory (4 PyTorch implementations with validation)
 - **CHANGELOG.md** - Version history and release notes
 - **CITATION.cff** - Citation metadata for academic reference
@@ -218,3 +216,4 @@ trauma-training-data/
 - Future: Computational Psychiatry, Nature Human Behaviour
 
 **This framework is proposed as a lens for understanding developmental trauma, not as a replacement for existing clinical or therapeutic approaches.**
+
