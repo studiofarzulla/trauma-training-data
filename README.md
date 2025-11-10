@@ -1,4 +1,5 @@
 # Trauma as Bad Training Data: A Computational Framework for Developmental Psychology
+[![DOI](https://zenodo.org/badge/1083414313.svg)](https://doi.org/10.5281/zenodo.17574591)
 
 **Author:** Murad Farzulla
 **Affiliation:** Farzulla Research
@@ -216,4 +217,5 @@ trauma-training-data/
 - Future: Computational Psychiatry, Nature Human Behaviour
 
 **This framework is proposed as a lens for understanding developmental trauma, not as a replacement for existing clinical or therapeutic approaches.**
+
 
