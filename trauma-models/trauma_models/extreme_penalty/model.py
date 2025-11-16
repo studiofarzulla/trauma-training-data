@@ -71,8 +71,9 @@ class ExtremePenaltyModel(TraumaModel):
         self.current_penalty_magnitude = 1.0
 
         # Store gradients for analysis
-        self.trauma_gradients = None
-        self.normal_gradients = None
+        self.trauma_gradients = []
+        self.normal_gradients = []
+        self.track_gradients = False  # Enable/disable gradient tracking
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
@@ -131,11 +132,15 @@ class ExtremePenaltyModel(TraumaModel):
         batch_size: int = 32,
         penalty_magnitude: float = 1.0,
         verbose: bool = True,
+        track_gradients: bool = False,
     ) -> Dict[str, list]:
         """
         Override train_model to handle penalty_magnitude parameter.
 
         The penalty is applied via the dataset's third tensor (penalty_mask).
+
+        Args:
+            track_gradients: If True, captures gradients for trauma vs normal examples
         """
         from torch.utils.data import DataLoader
 
@@ -143,6 +148,12 @@ class ExtremePenaltyModel(TraumaModel):
         optimizer = torch.optim.Adam(self.parameters(), lr=learning_rate)
 
         self.current_penalty_magnitude = penalty_magnitude
+        self.track_gradients = track_gradients
+
+        if track_gradients:
+            self.trauma_gradients = []
+            self.normal_gradients = []
+
         history = {"epoch": [], "loss": [], "batch_losses": []}
 
         for epoch in range(epochs):
@@ -170,6 +181,11 @@ class ExtremePenaltyModel(TraumaModel):
                     penalty_magnitude=penalty_magnitude,
                 )
                 loss.backward()
+
+                # Capture gradients if tracking is enabled
+                if track_gradients and penalty_mask is not None:
+                    self._capture_gradients(penalty_mask)
+
                 optimizer.step()
 
                 epoch_losses.append(loss.item())
@@ -183,7 +199,56 @@ class ExtremePenaltyModel(TraumaModel):
                 print(f"Epoch {epoch}/{epochs} - Loss: {avg_loss:.4f}")
 
         self.training_history = history
+
+        # Compute gradient magnitude ratio if gradients were tracked
+        if track_gradients and len(self.trauma_gradients) > 0 and len(self.normal_gradients) > 0:
+            history['gradient_magnitude_ratio'] = self._compute_gradient_ratio()
+
         return history
+
+    def _capture_gradients(self, penalty_mask: torch.Tensor):
+        """
+        Capture gradients for trauma vs normal examples.
+
+        Args:
+            penalty_mask: Boolean mask indicating traumatic examples
+        """
+        # Extract gradients from all parameters
+        grads = []
+        for param in self.parameters():
+            if param.grad is not None:
+                grads.append(param.grad.clone().detach())
+
+        # Store in appropriate list
+        if penalty_mask.any():
+            self.trauma_gradients.append(grads)
+        else:
+            self.normal_gradients.append(grads)
+
+    def _compute_gradient_ratio(self) -> float:
+        """
+        Compute ratio of trauma gradient magnitude to normal gradient magnitude.
+
+        Returns:
+            Gradient magnitude ratio (trauma / normal)
+        """
+        def compute_avg_norm(grad_list):
+            """Compute average L2 norm across all captured gradients."""
+            norms = []
+            for grads in grad_list:
+                total_norm = 0.0
+                for g in grads:
+                    total_norm += (g**2).sum().item()
+                norms.append(np.sqrt(total_norm))
+            return np.mean(norms) if norms else 0.0
+
+        trauma_norm = compute_avg_norm(self.trauma_gradients)
+        normal_norm = compute_avg_norm(self.normal_gradients)
+
+        if normal_norm > 0:
+            return trauma_norm / normal_norm
+        else:
+            return 0.0
 
     def generate_dataset(self, **kwargs) -> Tuple[TensorDataset, TensorDataset]:
         """

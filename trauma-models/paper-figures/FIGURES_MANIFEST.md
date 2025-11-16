@@ -1,7 +1,7 @@
 # Trauma as Training Data - Figures Manifest
 
 **Generated:** 2025-10-26
-**Location:** `/home/kawaiikali/Documents/Resurrexi/essays/figures/`
+**Location:** `./paper-figures/` (relative to repository root)
 **Paper:** Trauma as Training Data: A Machine Learning Framework for Understanding Developmental Psychology
 
 ---
@@ -21,7 +21,7 @@
 
 ### File Details
 - **Filename:** `figure1_extreme_penalty_overcorrection.png`
-- **Source:** `/home/kawaiikali/Documents/Resurrexi/coding-with-buddy/trauma-models/outputs/extreme_penalty_fixed/figures/extreme_penalty_overcorrection.png`
+- **Source:** `trauma-models/outputs/extreme_penalty_fixed/figures/extreme_penalty_overcorrection.png`
 - **Status:** ✅ **READY FOR PUBLICATION**
 - **Size:** 344 KB
 - **Resolution:** 300 DPI (publication quality)
@@ -62,7 +62,7 @@ Models how a single traumatic event creates fear generalization to similar conte
 
 ### File Details
 - **Filename:** `figure2_noisy_signals_instability.png`
-- **Source:** *To be generated from:* `/home/kawaiikali/Documents/Resurrexi/coding-with-buddy/trauma-models/trauma_models/noisy_signals/experiment.py`
+- **Source:** *To be generated from:* `trauma-models/trauma_models/noisy_signals/experiment.py`
 - **Status:** ⚠️ **NEEDS GENERATION**
 - **Expected Size:** ~300-400 KB
 - **Resolution:** 300 DPI (publication quality)
@@ -70,13 +70,13 @@ Models how a single traumatic event creates fear generalization to similar conte
 
 ### Generation Instructions
 ```bash
-cd /home/kawaiikali/Documents/Resurrexi/coding-with-buddy/trauma-models
+cd trauma-models
 source venv/bin/activate  # If using virtual environment
 python -m trauma_models.noisy_signals.experiment
 ```
 
 **Expected Output Location:**
-`/home/kawaiikali/Documents/Resurrexi/coding-with-buddy/trauma-models/outputs/noisy_signals/figures/noisy_signals_analysis.png`
+`trauma-models/outputs/noisy_signals/figures/noisy_signals_analysis.png`
 
 **Runtime:** ~6-9 minutes (3 noise levels × 10 runs each)
 
@@ -131,7 +131,7 @@ Models how inconsistent caregiving creates anxious attachment:
 
 ### File Details
 - **Filename:** `figure3_limited_dataset_overfitting.png`
-- **Source:** `/home/kawaiikali/Documents/Resurrexi/coding-with-buddy/trauma-models/outputs/limited_dataset/figures/generalization_gap.png`
+- **Source:** `trauma-models/outputs/limited_dataset/figures/generalization_gap.png`
 - **Status:** ✅ **READY FOR PUBLICATION**
 - **Size:** 424 KB
 - **Resolution:** 300 DPI (publication quality)
@@ -194,7 +194,7 @@ The Model 3 implementation generated 4 figures total. Other available figures:
 
 ### File Details
 - **Filename:** `figure4_catastrophic_forgetting_therapy.png`
-- **Source:** *To be generated from:* `/home/kawaiikali/Documents/Resurrexi/coding-with-buddy/trauma-models/trauma_models/catastrophic_forgetting/experiment.py`
+- **Source:** *To be generated from:* `trauma-models/trauma_models/catastrophic_forgetting/experiment.py`
 - **Status:** ⚠️ **NEEDS GENERATION**
 - **Expected Size:** ~300-400 KB
 - **Resolution:** 300 DPI (publication quality)
@@ -202,13 +202,13 @@ The Model 3 implementation generated 4 figures total. Other available figures:
 
 ### Generation Instructions
 ```bash
-cd /home/kawaiikali/Documents/Resurrexi/coding-with-buddy/trauma-models
+cd trauma-models
 source venv/bin/activate  # If using virtual environment
 python -m trauma_models.catastrophic_forgetting.experiment
 ```
 
 **Expected Output Location:**
-`/home/kawaiikali/Documents/Resurrexi/coding-with-buddy/trauma-models/outputs/catastrophic_forgetting/figures/catastrophic_forgetting_comparison.png`
+`trauma-models/outputs/catastrophic_forgetting/figures/catastrophic_forgetting_comparison.png`
 
 **Runtime:** ~2-3 minutes (3 strategies, relatively fast)
 
@@ -363,23 +363,23 @@ All experiments use **fixed random seed (42)** for reproducibility. Exact hyperp
 
 1. **Generate Model 2 figure:**
    ```bash
-   cd /home/kawaiikali/Documents/Resurrexi/coding-with-buddy/trauma-models
+   cd trauma-models
    python -m trauma_models.noisy_signals.experiment
    cp outputs/noisy_signals/figures/noisy_signals_analysis.png \
-      /home/kawaiikali/Documents/Resurrexi/essays/figures/figure2_noisy_signals_instability.png
+      ../paper-figures/figure2_noisy_signals_instability.png
    ```
 
 2. **Generate Model 4 figure:**
    ```bash
-   cd /home/kawaiikali/Documents/Resurrexi/coding-with-buddy/trauma-models
+   cd trauma-models
    python -m trauma_models.catastrophic_forgetting.experiment
    cp outputs/catastrophic_forgetting/figures/catastrophic_forgetting_comparison.png \
-      /home/kawaiikali/Documents/Resurrexi/essays/figures/figure4_catastrophic_forgetting_therapy.png
+      ../paper-figures/figure4_catastrophic_forgetting_therapy.png
    ```
 
 3. **Verify all figures:**
    ```bash
-   ls -lh /home/kawaiikali/Documents/Resurrexi/essays/figures/*.png
+   ls -lh paper-figures/*.png
    ```
 
 ### Pre-Submission Checklist:
@@ -396,20 +396,20 @@ All experiments use **fixed random seed (42)** for reproducibility. Exact hyperp
 ## File Locations Reference
 
 ### Source Code:
-- Model 1: `/home/kawaiikali/Documents/Resurrexi/coding-with-buddy/trauma-models/trauma_models/extreme_penalty/`
-- Model 2: `/home/kawaiikali/Documents/Resurrexi/coding-with-buddy/trauma-models/trauma_models/noisy_signals/`
-- Model 3: `/home/kawaiikali/Documents/Resurrexi/coding-with-buddy/trauma-models/trauma_models/limited_dataset/`
-- Model 4: `/home/kawaiikali/Documents/Resurrexi/coding-with-buddy/trauma-models/trauma_models/catastrophic_forgetting/`
+- Model 1: `trauma-models/trauma_models/extreme_penalty/`
+- Model 2: `trauma-models/trauma_models/noisy_signals/`
+- Model 3: `trauma-models/trauma_models/limited_dataset/`
+- Model 4: `trauma-models/trauma_models/catastrophic_forgetting/`
 
 ### Original Outputs:
-- Model 1: `/home/kawaiikali/Documents/Resurrexi/coding-with-buddy/trauma-models/outputs/extreme_penalty_fixed/`
-- Model 2: `/home/kawaiikali/Documents/Resurrexi/coding-with-buddy/trauma-models/outputs/noisy_signals/` ⚠️ TO BE CREATED
-- Model 3: `/home/kawaiikali/Documents/Resurrexi/coding-with-buddy/trauma-models/outputs/limited_dataset/`
-- Model 4: `/home/kawaiikali/Documents/Resurrexi/coding-with-buddy/trauma-models/outputs/catastrophic_forgetting/` ⚠️ TO BE CREATED
+- Model 1: `trauma-models/outputs/extreme_penalty_fixed/`
+- Model 2: `trauma-models/outputs/noisy_signals/` ⚠️ TO BE CREATED
+- Model 3: `trauma-models/outputs/limited_dataset/`
+- Model 4: `trauma-models/outputs/catastrophic_forgetting/` ⚠️ TO BE CREATED
 
-### Essay Figures (Publication):
-- All figures: `/home/kawaiikali/Documents/Resurrexi/essays/figures/`
-- This manifest: `/home/kawaiikali/Documents/Resurrexi/essays/figures/FIGURES_MANIFEST.md`
+### Publication Figures:
+- All figures: `paper-figures/`
+- This manifest: `trauma-models/paper-figures/FIGURES_MANIFEST.md`
 
 ---
 

@@ -289,10 +289,26 @@ def run_statistical_analysis(
             )
             t_test_results.append(result)
 
-            print(f"\n{result['comparison']}:")
-            print(f"  t = {result['t_statistic']:.3f}, p = {result['p_value']:.4f}")
-            print(f"  Cohen's d = {result['cohens_d']:.3f} ({result['effect_size']} effect)")
-            print(f"  Significant: {'YES' if result['significant'] else 'NO'} (α=0.05)")
+    # Apply Bonferroni correction for multiple comparisons
+    num_comparisons = len(t_test_results)
+    alpha = 0.05
+    bonferroni_alpha = alpha / num_comparisons
+
+    print(f"\nMultiple Testing Correction:")
+    print(f"  Number of comparisons: {num_comparisons}")
+    print(f"  Original α: {alpha}")
+    print(f"  Bonferroni-corrected α: {bonferroni_alpha:.4f}")
+
+    # Update significance flags with Bonferroni correction
+    for result in t_test_results:
+        result['bonferroni_significant'] = result['p_value'] < bonferroni_alpha
+        result['bonferroni_alpha'] = bonferroni_alpha
+
+        print(f"\n{result['comparison']}:")
+        print(f"  t = {result['t_statistic']:.3f}, p = {result['p_value']:.4f}")
+        print(f"  Cohen's d = {result['cohens_d']:.3f} ({result['effect_size']} effect)")
+        print(f"  Significant (α=0.05): {'YES' if result['significant'] else 'NO'}")
+        print(f"  Significant (Bonferroni α={bonferroni_alpha:.4f}): {'YES' if result['bonferroni_significant'] else 'NO'}")
 
     # Generate summary table
     print("\n" + "=" * 80)
@@ -351,9 +367,12 @@ def run_statistical_analysis(
     print(f"   t({n_trials-1}) = {comparison_2_10['t_statistic']:.3f}, p = {comparison_2_10['p_value']:.4f}")
     print(f"   Cohen's d = {comparison_2_10['cohens_d']:.3f} ({comparison_2_10['effect_size']} effect)")
 
-    if comparison_2_10['significant']:
-        print(f"   ✓ STATISTICALLY SIGNIFICANT at α=0.05")
-        print(f"   The improvement is NOT due to random chance.")
+    if comparison_2_10['bonferroni_significant']:
+        print(f"   ✓ STATISTICALLY SIGNIFICANT (Bonferroni-corrected α={comparison_2_10['bonferroni_alpha']:.4f})")
+        print(f"   The improvement is NOT due to random chance, even after correction for multiple comparisons.")
+    elif comparison_2_10['significant']:
+        print(f"   ~ MARGINALLY SIGNIFICANT at α=0.05 (not after Bonferroni correction)")
+        print(f"   The improvement shows promise but requires caution given multiple comparisons.")
     else:
         print(f"   ✗ NOT STATISTICALLY SIGNIFICANT at α=0.05")
         print(f"   The improvement may be due to random variation.")
@@ -508,12 +527,19 @@ def create_text_summary(results: Dict, output_dir: Path):
         f.write("3. STATISTICAL SIGNIFICANCE:\n")
         f.write(f"   t({config['n_trials']-1}) = {comparison_2_10['t_statistic']:.3f}\n")
         f.write(f"   p = {comparison_2_10['p_value']:.4f}\n")
-        f.write(f"   Cohen's d = {comparison_2_10['cohens_d']:.3f} ({comparison_2_10['effect_size']} effect)\n\n")
+        f.write(f"   Cohen's d = {comparison_2_10['cohens_d']:.3f} ({comparison_2_10['effect_size']} effect)\n")
+        f.write(f"   Bonferroni-corrected α = {comparison_2_10['bonferroni_alpha']:.4f}\n\n")
 
-        if comparison_2_10['significant']:
-            f.write("   ✓ STATISTICALLY SIGNIFICANT at α=0.05\n")
-            f.write("   The improvement is NOT due to random chance.\n")
+        if comparison_2_10['bonferroni_significant']:
+            f.write("   ✓ STATISTICALLY SIGNIFICANT (Bonferroni-corrected)\n")
+            f.write("   The improvement is NOT due to random chance, even after correction\n")
+            f.write("   for multiple comparisons.\n")
             f.write("   Conclusion: Alloparenting provides measurable reduction in overfitting.\n")
+        elif comparison_2_10['significant']:
+            f.write("   ~ MARGINALLY SIGNIFICANT at α=0.05 (not after Bonferroni)\n")
+            f.write("   The improvement shows promise but requires caution given\n")
+            f.write("   multiple comparisons.\n")
+            f.write("   Conclusion: Effect exists but conservative interpretation advised.\n")
         else:
             f.write("   ✗ NOT STATISTICALLY SIGNIFICANT at α=0.05\n")
             f.write("   The improvement may be due to random variation.\n")
@@ -531,12 +557,21 @@ def create_text_summary(results: Dict, output_dir: Path):
         f.write(f"models (2 caregivers) showed generalization gap of {gap_2:.4f} ± {std_2:.4f} (mean ± SD),\n")
         f.write(f"while community models ({caregiver_counts[-1]} caregivers) achieved {gap_10:.4f} ± {std_10:.4f}.\n\n")
 
-        if comparison_2_10['significant']:
+        if comparison_2_10['bonferroni_significant']:
             f.write(f"An independent samples t-test confirmed this difference is statistically significant\n")
+            f.write(f"even after Bonferroni correction for multiple comparisons\n")
             f.write(f"(t({config['n_trials']-1}) = {comparison_2_10['t_statistic']:.2f}, p = {comparison_2_10['p_value']:.3f}, ")
+            f.write(f"corrected α = {comparison_2_10['bonferroni_alpha']:.4f}, ")
             f.write(f"Cohen's d = {comparison_2_10['cohens_d']:.2f}),\n")
             f.write(f"demonstrating that alloparenting's benefits are robust and not due to random\n")
-            f.write(f"variation in training dynamics.\"\n")
+            f.write(f"variation in training dynamics or multiple testing artifacts.\"\n")
+        elif comparison_2_10['significant']:
+            f.write(f"An independent samples t-test showed a significant difference\n")
+            f.write(f"(t({config['n_trials']-1}) = {comparison_2_10['t_statistic']:.2f}, p = {comparison_2_10['p_value']:.3f}, ")
+            f.write(f"Cohen's d = {comparison_2_10['cohens_d']:.2f}),\n")
+            f.write(f"though the result becomes marginal after Bonferroni correction for multiple\n")
+            f.write(f"comparisons (corrected α = {comparison_2_10['bonferroni_alpha']:.4f}). While the effect is\n")
+            f.write(f"consistent with our hypothesis, conservative interpretation is advised.\"\n")
         else:
             f.write(f"While an independent samples t-test showed the expected direction\n")
             f.write(f"(t({config['n_trials']-1}) = {comparison_2_10['t_statistic']:.2f}, p = {comparison_2_10['p_value']:.3f}),\n")
