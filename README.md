@@ -3,14 +3,14 @@
 
 **Author:** Murad Farzulla
 **Affiliation:** Farzulla Research
-**Status:** v1.1.0 Official Release
+**Status:** v2.0.0 Official Release
 **Release Date:** November 22, 2025
 
 **DOIs:**
 - Paper: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17681336.svg)](https://doi.org/10.5281/zenodo.17681336)
 - Repository: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17681161.svg)](https://doi.org/10.5281/zenodo.17681161)
 
-**Latest Version (v1.1.0):** Enhanced with empirical validation, statistical rigor, and comprehensive test suite. See [CHANGELOG.md](CHANGELOG.md) for details.
+**Latest Version (v2.0.0):** Publication-ready release with complete peer review fixes, enhanced empirical grounding (71 references), and comprehensive scientific rigor improvements.
 
 ## Abstract
 
@@ -41,9 +41,9 @@ The essay categorizes developmental trauma through four ML training data problem
 3. **Policy Implications**: Suggests prevention strategies (alloparenting, co-housing) based on training data diversity
 4. **Interdisciplinary Integration**: Bridges ML, neuroscience, attachment theory, developmental psychology
 
-## v1.1.0 Release Highlights
+## v2.0.0 Release Highlights
 
-This release significantly enhances the paper's empirical rigor and reproducibility:
+Publication-ready release with comprehensive scientific rigor improvements:
 
 ### New Features
 
