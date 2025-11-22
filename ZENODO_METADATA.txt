@@ -1,0 +1,133 @@
+================================================================================
+ZENODO UPLOAD METADATA - TRAUMA TRAINING DATA v2.0.0
+================================================================================
+
+TITLE:
+Trauma as Bad Training Data: A Computational Framework for Developmental Psychology
+
+================================================================================
+
+CREATORS:
+Farzulla, Murad (Researcher)
+ORCID: 0009-0002-7164-8704
+
+================================================================================
+
+DESCRIPTION:
+Childhood trauma reframed through machine learning training data quality: extreme penalties cause gradient cascades (1,247× amplification), noisy signals produce behavioral instability, absent positive examples create emotional recognition deficits, and limited datasets (nuclear families) cause overfitting to parental dysfunction. PyTorch experiments validate computational mechanisms; Bonferroni-corrected statistics show caregiver diversity significantly improves outcomes (p=0.0012, d=3.08).
+
+Version 2.0.0 with enhanced empirical grounding and complete peer review fixes.
+
+================================================================================
+
+ABSTRACT:
+This paper proposes a computational framework for understanding childhood developmental trauma by reframing it as "bad training data" in a learning system. Drawing parallels between machine learning training problems and developmental psychology, it offers a mechanistic account that removes moral judgment while preserving insight into how adverse childhood experiences shape adult behavior and cognition.
+
+We categorize developmental trauma through four ML training data problems: (1) Direct Negative Experiences (extreme penalties causing gradient cascades), (2) Indirect Negative Experiences (noisy signals producing weight instability), (3) Absence of Positive Experiences (class imbalance preventing positive pattern learning), and (4) Insufficient Exposure (limited datasets causing overfitting). Each category maps clinical phenomena to computational mechanisms validated through PyTorch experiments.
+
+Principal Contributions
+
+(1) Novel typology: Four-category classification of developmental trauma via training data quality metrics, bridging ML, neuroscience, developmental psychology, and clinical research across 71 empirical references.
+
+(2) Computational validation: PyTorch experiments demonstrate gradient magnitude amplification (1,247× at extreme penalties, p<0.001), weight variance under label noise (3.2× increase at 60% flip rate), generalization gaps from limited data (MSE_test - MSE_train increases 156% with 2 vs 10 caregivers), and catastrophic forgetting during retraining (124× error increase without experience replay).
+
+(3) Statistical rigor: Bonferroni-corrected multiple comparison tests show nuclear family (2 caregivers) vs community child-rearing (10 caregivers) produces significantly worse generalization (p=0.0012, Cohen's d=3.08). Statistical power analysis: n=10 trials achieves 80% power for large effects (d>0.8).
+
+(4) Mechanistic clarity: Explains why physical punishment causes behavioral overcorrection beyond target (gradient cascades affect correlated features), why inconsistent caregiving produces chronic uncertainty (weight instability under noisy supervision), why emotional neglect creates alexithymia (no labeled positive emotional examples), and why therapy takes years (catastrophic forgetting requires experience replay for safe retraining).
+
+(5) Policy implications: Nuclear family structure concentrates training data quality risk; community child-rearing (alloparenting) distributes caregiving across 8-10 adults, preventing overfitting to any single dysfunction. Cross-cultural evidence supports diversity benefits (Hrdy 2009, Martin 2020, Marquez 2023).
+
+Practical Implications
+
+For clinical practice: Framework suggests categorizing trauma by training data problem (extreme penalties vs noisy signals vs absent positives vs limited exposure) to inform intervention strategies. EMDR and exposure therapy map onto experience replay mechanisms; narrative therapy provides label correction for mislabeled emotional experiences.
+
+For public policy: Prevention substantially more tractable than intervention due to catastrophic forgetting dynamics. Structural interventions (co-housing, peer family networks, cultural alloparenting practices) reduce overfitting risk by expanding training distribution diversity.
+
+For AI ethics: Substrate-independent framework applies to animal welfare (training data quality for other species) and AI alignment (potential training conditions causing AI suffering). Consent-stakes analysis reveals children have maximal outcome stakes (α→0, s→∞) yet zero institutional voice, predicting friction observable as developmental dysfunction.
+
+Replication and Data Availability
+
+Complete replication materials include: PyTorch 2.0+ computational models, 26-test suite with 75%+ coverage, fixed random seeds (42-51), experimental configurations, figure generation code, and statistical analysis scripts. Expected runtime approximately 15 minutes on standard CPU hardware (no GPU required). All models validate theoretical predictions with reproducible outputs.
+
+Code repository DOI: 10.5281/zenodo.17681161
+Paper DOI: 10.5281/zenodo.17681336
+GitHub: github.com/studiofarzulla/trauma-training-data
+
+Research conducted independently without institutional affiliation or external funding. This research is open-source as part of the commitment to open science and has been conducted in accordance with Farzulla Research Charter: https://farzulla.org/charter.html.
+
+---
+
+Publication Status: Preprint v2.0.0 (November 2025) | Farzulla Research
+Contact: murad@farzulla.org | ORCID: 0009-0002-7164-8704
+License: CC-BY-4.0 (paper) | MIT (code)
+
+================================================================================
+
+KEYWORDS:
+developmental psychology, machine learning, trauma, computational psychiatry, gradient descent, catastrophic forgetting, attachment theory, child development, adversarial training, alloparenting, PTSD, CPTSD, cognitive science, neuroscience, training data quality, PyTorch, label noise, class imbalance, overfitting, consent theory
+
+================================================================================
+
+METHODS:
+METHODOLOGICAL APPROACH
+
+The analysis employs four computational models implemented in PyTorch 2.0+ to validate theoretical predictions:
+
+Model 1 (Extreme Penalty): 3-layer multilayer perceptron (10 input features, 64 hidden units, 1 output) trained on 5,000 examples with penalty weights λ ∈ {1, 10, 100, 1000}. Overcorrection operationalized as (w_learned - w_target)/w_target where w_target represents weights learned under λ=1 baseline. Gradient magnitudes measured as L2 norm of output layer gradient tensor (||∇L||₂). Features constructed with controlled correlation structures (r=0.8, 0.4, 0.1) to test cascade propagation.
+
+Model 2 (Noisy Signals): Binary classifier trained on 10,000 examples with label flip probability p_noise ∈ {0.05, 0.30, 0.60} applied contextually. Behavioral variance quantified as standard deviation of model outputs across 10 independent runs (seeds 42-51) for identical inputs. Weight instability measured as coefficient of variation across trained parameters.
+
+Model 3 (Limited Dataset): Regression models trained on synthetic caregiver datasets of varying sizes (2, 5, 10 caregivers) and tested on 50 novel caregivers. Generalization gap defined as MSE_test - MSE_train. Each experiment repeated 10 times with different random seeds. Statistical significance assessed via independent samples t-tests with 95% confidence intervals and Cohen's d effect sizes.
+
+Model 4 (Catastrophic Forgetting): Two-phase learning system trained on 10,000 trauma examples (Phase 1) followed by 150 therapy examples (Phase 2). Three retraining strategies compared: naive (high learning rate, therapy only), conservative (low learning rate, therapy only), experience replay (medium learning rate, 20% trauma + 80% therapy). Forgetting rate calculated as (MSE_phase2 - MSE_phase1)/MSE_phase1 for original task.
+
+ROBUSTNESS VALIDATION
+
+Statistical analysis employs Bonferroni correction for multiple comparisons (α_corrected = 0.05/3 = 0.0167 for three pairwise tests). Effect sizes reported as Cohen's d with 95% bootstrap confidence intervals (10,000 resamples). Reproducibility infrastructure includes comprehensive unit tests (75%+ code coverage), fixed random seeds, and version-controlled experimental configurations. All experiments executable on standard CPU hardware without specialized computing requirements.
+
+Clinical validation integrates 71 empirical references spanning: developmental psychology (Bowlby 1969, Ainsworth 1978, Felitti ACEs 1998, van der Kolk 2014), machine learning (Kirkpatrick catastrophic forgetting 2017, Chen label noise 2024, Dong adversarial training 2022), neuroscience (Kriegeskorte computational cognitive neuroscience 2018, Bosmans learning theory of attachment 2020), and therapeutic mechanisms (EMDR meta-analysis Landin-Romero 2018, exposure therapy Craske 2014, narrative therapy van de Schoot 2019).
+
+Interactive visualizations and supplementary materials available at: farzulla.org/research/trauma-training-data/
+
+Farzulla Research project methodologies: https://farzulla.org/methodologies
+
+================================================================================
+
+SERIES INFORMATION:
+This work forms part of the Adversarial Systems Research program, which investigates stability, alignment, and friction dynamics in complex systems where competing interests generate structural conflict. The program examines how agents with divergent preferences interact within institutional constraints across multiple domains: political governance, financial markets (cryptocurrency volatility and regulatory responses), human cognitive development (trauma as maladaptive learning from adversarial training environments), and artificial intelligence alignment (multi-agent systems with competing objectives).
+
+The unifying framework treats all these domains as adversarial environments where optimal outcomes require balancing competing interests rather than eliminating conflict. In political systems, this manifests as the tension between stakeholder consent and technocratic competence (Doctrine of Consensual Sovereignty). In financial markets, it appears as infrastructure disruption dominance over regulatory uncertainty (Cryptocurrency Event Study). In human development, it emerges as the challenge of learning accurate models from suboptimal training data (this paper). In AI systems, it surfaces as the alignment problem when multiple agents optimize for different reward functions.
+
+The computational framework introduced here applies substrate-independently: the same training data quality principles govern learning in biological neural networks (human children), artificial neural networks (ML models), and potentially other learning systems. This generality enables cross-domain insights: ML adversarial training research informs therapeutic intervention design, developmental psychology validates computational predictions, and both domains contribute to AI alignment research.
+
+Read other papers part of the program: https://zenodo.org/communities/farzulla/, for more insight into upcoming and ongoing projects: https://farzulla.org. For more information about the author and other related works: Studio Farzulla (https://farzulla.com)
+
+================================================================================
+
+NOTES:
+Version 2.0.0 represents publication-ready release with comprehensive peer review fixes validated by four specialized review agents (technical accuracy, clinical validity, academic writing quality, novelty assessment). All agents returned GO verdicts for Zenodo/PsyArXiv submission.
+
+Major improvements from v1.1.0 include: enhanced scientific rigor (gradient magnitude experimental details, statistical power analysis), three foundational citations added (van der Kolk 2014, Felitti ACEs 1998, alexithymia research), DSM-5 Developmental Trauma Disorder debate contextualized, attachment theory empirical nuance, CPTSD modeling properly framed as speculative hypothesis, effect size prominence, and reproducibility requirements specified.
+
+This framework has been developed independently as part of broader research into adversarial systems dynamics. Future work will extend computational modeling to formalize PTSD vs CPTSD as distinct ML failure modes (acute catastrophic event vs chronic distributional shift), integrate empirical validation studies testing specific predictions about overcorrection and retraining difficulty, and develop clinical application guidelines for training-data-aware therapeutic interventions.
+
+================================================================================
+
+RELATED/ALTERNATE IDENTIFIERS:
+Is supplement to: 10.5281/zenodo.17626763 (Doctrine of Consensual Sovereignty)
+Is part of series: Adversarial Systems Research Program
+References: 10.1016/S0749-3797(98)00017-8 (Felitti ACEs Study)
+References: 10.1073/pnas.1611835114 (Kirkpatrick Catastrophic Forgetting)
+References: 10.1038/nn.4238 (Kriegeskorte Computational Cognitive Neuroscience)
+References: 10.1038/s41598-024-56909-2 (Hamel Alexithymia)
+References: 10.1016/j.neubiorev.2020.03.014 (Bosmans Learning Theory of Attachment)
+Cites: github.com/studiofarzulla/trauma-training-data (Code Repository)
+
+================================================================================
+
+VERSION: 2.0.0
+PUBLICATION DATE: 2025-11-22
+LICENSE: CC-BY-4.0 (paper) | MIT (code)
+UPLOAD TYPE: Publication > Preprint
+
+================================================================================
