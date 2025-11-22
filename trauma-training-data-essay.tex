@@ -1,40 +1,232 @@
-\documentclass{article}
-\usepackage[utf8]{inputenc}
-\usepackage[margin=1in]{geometry}
-\usepackage{hyperref}
+% ============================================================================
+% FARZULLA RESEARCH PREPRINT TEMPLATE
+% ============================================================================
+% Custom academic preprint template with branding, version control, and logos
+% Author: Murad Farzulla
+% Organization: Farzulla Research
+% Template Version: 1.0.0
+% Last Updated: November 2025
+%
+% Paper: Gradient Descent Framework - Trauma as Adversarial Training Conditions
+% Version: 1.2.0
+% ============================================================================
+
+\documentclass[11pt,twocolumn]{article}
+
+% ============================================================================
+% PACKAGE IMPORTS
+% ============================================================================
+
+% Page geometry and layout
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{setspace}
+
+% Fonts and typography
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% Graphics and figures
+\usepackage{graphicx}
+\usepackage{float}
+\graphicspath{{figures/}}
+
+% Tables
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+
+% Math packages
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{cite}
-\usepackage{setspace}
-\usepackage{titlesec}
-\usepackage{graphicx}
+\usepackage{amsthm}
 
-% Configure hyperref for better PDF output
-\hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    filecolor=magenta,
-    urlcolor=cyan,
-    citecolor=blue,
-    pdftitle={Gradient Descent Framework: Trauma as Adversarial Training Conditions},
-    pdfauthor={Murad Farzulla},
+% Bibliography
+\usepackage[round,authoryear]{natbib}
+\bibliographystyle{abbrvnat}
+
+% Colors
+\usepackage{xcolor}
+\definecolor{farzullaburgundy}{RGB}{128,0,32}      % Farzulla Research brand color
+\definecolor{zenodoblue}{RGB}{0,123,255}            % Zenodo blue
+\definecolor{orcidgreen}{RGB}{166,206,57}           % ORCID green
+
+% Colored boxes
+\usepackage{tcolorbox}
+
+% TikZ for custom graphics
+\usepackage{tikz}
+\usepackage{scalerel}
+
+% Hyperlinks and PDF metadata
+\usepackage{url}  % Better URL formatting and line breaking
+\usepackage[colorlinks=true,
+            linkcolor=farzullaburgundy,
+            citecolor=farzullaburgundy,
+            urlcolor=farzullaburgundy,
+            breaklinks=true,
+            pdftitle={Gradient Descent Framework: Trauma as Adversarial Training Conditions},
+            pdfauthor={Murad Farzulla},
+            pdfkeywords={developmental psychology, machine learning, trauma theory, computational cognitive science, neural networks, training data}]{hyperref}
+
+% Allow URLs to break at hyphens and slashes
+\def\UrlBreaks{\do\/\do-\do_}
+\expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks\do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z}
+
+% Section spacing and formatting
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{1.5ex plus 0.5ex minus 0.2ex}{1ex plus 0.2ex}
+\titlespacing*{\subsection}{0pt}{1.2ex plus 0.4ex minus 0.2ex}{0.8ex plus 0.2ex}
+
+% Burgundy section headings (justified for traditional block look, scaled down)
+\titleformat{\section}{\normalfont\large\bfseries\color{farzullaburgundy}}{\thesection}{0.5em}{}
+\titleformat{\subsection}{\normalfont\normalsize\bfseries\color{farzullaburgundy}}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\normalfont\small\bfseries\color{farzullaburgundy}}{\thesubsubsection}{0.5em}{}
+
+% Footer customization
+\usepackage{fancyhdr}
+
+% ============================================================================
+% CUSTOM LOGO COMMANDS
+% ============================================================================
+
+% ORCID icon (clickable green circle with iD mark) - adjustable size
+\newcommand{\orcidicon}{\scalerel*{
+    \begin{tikzpicture}[x=3ex,y=3ex]
+    \draw[fill=orcidgreen] (0,0) circle (0.5);
+    \draw[white,line width=0.08ex] (0,0.15) -- (0,0.3);
+    \draw[white,line width=0.08ex] (-0.15,0) -- (-0.3,0);
+    \end{tikzpicture}
+}{\textrm{I}}}
+
+% Farzulla Research logo (actual logo image - PDF for vector scaling)
+\newcommand{\farzullalogo}{%
+    \href{https://farzulla.org}{%
+        \includegraphics[height=4ex]{farzulla-logo.pdf}%
+    }%
 }
 
-\title{Gradient Descent Framework: Trauma as Adversarial Training Conditions\\
-\large Machine Learning Models for Developmental Psychology}
-\author{Murad Farzulla\\
-\textit{Farzulla Research}}
-\date{}
+% Zenodo logo (actual logo image - PDF for vector scaling)
+\newcommand{\zenodologo}{%
+    \href{https://zenodo.org}{%
+        \includegraphics[height=4ex]{zenodo-logo.pdf}%
+    }%
+}
+
+% ============================================================================
+% VERSION AND PREPRINT BANNER
+% ============================================================================
+
+% Version number command (CUSTOMIZE - update for each version/paper)
+\newcommand{\paperver}{1.2.0}
+\newcommand{\paperdate}{November 2025}
+
+% DOI command (CUSTOMIZE - update with actual Zenodo DOI after upload)
+\newcommand{\paperdoi}{10.5281/zenodo.17681161}
+
+% ============================================================================
+% METADATA BOX (appears after abstract on first page)
+% ============================================================================
+
+\newcommand{\metadatabox}[1]{%
+\begin{tcolorbox}[
+    colback=gray!5,
+    colframe=farzullaburgundy,
+    title=Publication Metadata,
+    fonttitle=\bfseries,
+    coltitle=white,
+    colbacktitle=farzullaburgundy,
+    width=\columnwidth,
+    arc=2mm,
+    boxrule=0.8pt
+]
+\small
+\textbf{DOI:} \href{https://doi.org/#1}{\texttt{#1}}\\
+\textbf{Version:} \paperver\\
+\textbf{Date:} \paperdate\\
+\textbf{License:} CC-BY-4.0
+\end{tcolorbox}
+}
+
+% ============================================================================
+% HEADER AND FOOTER CONFIGURATION
+% ============================================================================
+
+% Short title command (used in running header)
+\newcommand{\shorttitle}{Trauma as Training Data}
+
+\pagestyle{fancy}
+\fancyhf{} % Clear default
+
+% Running headers (for main body pages)
+\fancyhead[L]{\small\href{https://farzulla.org}{farzulla.org}}
+\fancyhead[C]{}
+\fancyhead[R]{\small\href{https://doi.org/\paperdoi}{DOI: \paperdoi}}
+
+% Footers
+\fancyfoot[C]{\small\thepage}
+\fancyfoot[L]{\small Murad Farzulla}
+\fancyfoot[R]{\small v\paperver~| \paperdate}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% First page style (no headers, just footers)
+\fancypagestyle{firstpage}{
+  \fancyhf{}
+  \fancyfoot[C]{\small\thepage}
+  \fancyfoot[L]{\small Murad Farzulla}
+  \fancyfoot[R]{\small v\paperver~| \paperdate}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+}
+
+% ============================================================================
+% DOCUMENT BODY
+% ============================================================================
 
 \begin{document}
 
-\maketitle
+% Single-column frontmatter
+\onecolumn
+\setstretch{1.2}
 
+% Apply first page style (no header)
+\thispagestyle{firstpage}
+
+% Preprint status centered above title
+\begin{center}
+{\small\color{farzullaburgundy}\textbf{PREPRINT v\paperver} | \color{gray}Not peer-reviewed}
+\end{center}
+\vspace{0.5em}
+
+% Manual title construction
+\begin{center}
+{\Large\bfseries Gradient Descent Framework: Trauma as Adversarial Training Conditions}\\[0.5em]
+{\large\itshape Machine Learning Models for Developmental Psychology}\\[1em]
+{\bfseries Murad Farzulla}\textsuperscript{1} \href{https://orcid.org/0009-0002-7164-8704}{\orcidicon\ \texttt{0009-0002-7164-8704}}\\[0.5em]
+{\small\itshape \textsuperscript{1}\href{https://farzulla.org}{Farzulla Research}}\\[0.3em]
+{\small \paperdate}\\[0.5em]
+{\small Correspondence: \href{mailto:murad@farzulla.org}{murad@farzulla.org}}
+\end{center}
+
+% Abstract
 \begin{abstract}
-Traditional trauma theory frames adverse childhood experiences as damaging events that require healing. This conceptualization, while emotionally resonant, often obscures mechanistic understanding and limits actionable intervention strategies. We propose a computational reframing: trauma represents maladaptive learned patterns arising from suboptimal training environments, functionally equivalent to problems observed in machine learning systems trained on poor-quality data. This framework identifies four distinct categories of developmental ``training data problems'': direct negative experiences (high-magnitude negative weights), indirect negative experiences (noisy training signals), absence of positive experiences (insufficient positive examples), and limited exposure (underfitting from restricted data). We demonstrate that extreme penalties produce overcorrection and weight cascades in both artificial and biological neural networks, and argue that nuclear family structures constitute limited training datasets prone to overfitting. This computational lens removes emotional defensiveness, provides harder-to-deny mechanistic explanations, and suggests tractable engineering solutions including increased caregiver diversity and community-based child-rearing. By treating developmental psychology as a pattern-learning problem across substrates, we make prevention more tractable than traditional therapeutic intervention and provide a substrate-independent framework applicable to humans, animals, and future artificial intelligences.
+\noindent Traditional trauma theory frames adverse childhood experiences as damaging events that require healing. This conceptualization, while emotionally resonant, often obscures mechanistic understanding and limits actionable intervention strategies. We propose a computational reframing: trauma represents maladaptive learned patterns arising from suboptimal training environments, functionally equivalent to problems observed in machine learning systems trained on poor-quality data. This framework identifies four distinct categories of developmental ``training data problems'': direct negative experiences (high-magnitude negative weights), indirect negative experiences (noisy training signals), absence of positive experiences (insufficient positive examples), and limited exposure (underfitting from restricted data). We demonstrate that extreme penalties produce overcorrection and weight cascades in both artificial and biological neural networks, and argue that nuclear family structures constitute limited training datasets prone to overfitting. This computational lens removes emotional defensiveness, provides harder-to-deny mechanistic explanations, and suggests tractable engineering solutions including increased caregiver diversity and community-based child-rearing. By treating developmental psychology as a pattern-learning problem across substrates, we make prevention more tractable than traditional therapeutic intervention and provide a substrate-independent framework applicable to humans, animals, and future artificial intelligences.
+
+\vspace{0.5em}
+\noindent\textbf{Keywords:} developmental psychology, machine learning, trauma theory, computational cognitive science, neural networks, training data
 \end{abstract}
 
-\noindent\textbf{Keywords:} developmental psychology, machine learning, trauma theory, computational cognitive science, neural networks, training data
+\vspace{1em}
+
+% Metadata box
+\metadatabox{\paperdoi}
+
+\vspace{1em}
+
+% ============================================================================
+% FRONTMATTER SECTIONS (single-column)
+% ============================================================================
 
 \section*{Research Program Context}
 
@@ -50,6 +242,21 @@ This work is part of the \textbf{Adversarial Systems Research} program, which in
 \end{itemize}
 
 This framework is applicable to any system where consent structures remain undefined but friction dynamics are observable—from algorithmic governance to climate negotiations to autonomous agent coordination.
+
+\section*{Note on Prior Work}
+
+This paper is version \paperver~(\paperdate). The framework emerged from interdisciplinary synthesis of machine learning principles, developmental psychology research, and computational cognitive science. This version includes enhanced computational validation with PyTorch experiments demonstrating gradient cascades, weight instability, overfitting patterns, and catastrophic forgetting mechanisms. Statistical rigor has been strengthened with Bonferroni-corrected hypothesis testing, effect size analysis, and reproducibility infrastructure (75\%+ test coverage, fixed random seeds, comprehensive unit tests).
+
+Future versions may extend the framework to formalize PTSD and CPTSD as distinct computational patterns, integrate additional empirical validation studies, and expand clinical application guidelines.
+
+
+% ============================================================================
+% MAIN BODY (switch to two-column)
+% ============================================================================
+
+\clearpage
+\twocolumn
+\setstretch{1.2}  % Reapply line spacing after column switch
 
 \section{Introduction}
 
@@ -81,21 +288,21 @@ This paper makes four primary contributions to developmental psychology and comp
 
 \subsection{Roadmap}
 
-Section 2 reviews traditional psychological frameworks and introduces computational reframing precedents. Section 3 details the four categories of training data problems with clinical examples. Section 4 analyzes extreme penalties as weight cascade phenomena. Section 5 examines nuclear families as limited datasets. Section 6 discusses empirical research directions and practical implications. Section 7 concludes with broader theoretical significance.
+We proceed by reviewing traditional psychological frameworks (Section 2), detailing four categories of training data problems with clinical examples (Section 3), analyzing extreme penalties and nuclear family structures through computational mechanisms (Sections 4-5), presenting empirical validation and clinical applications (Sections 6-7), and discussing broader theoretical implications (Section 8).
 
 \section{Background: From Emotional Framing to Computational Mechanism}
 
 \subsection{Traditional Psychological Conceptualizations of Trauma}
 
-Contemporary trauma theory, heavily influenced by psychiatric diagnostic frameworks, conceptualizes adverse childhood experiences through a medical model. The Diagnostic and Statistical Manual's criteria for post-traumatic stress disorder and its developmental variants frame trauma as exposure to actual or threatened death, serious injury, or sexual violence, followed by characteristic symptom clusters including intrusive memories, avoidance, negative alterations in cognition and mood, and alterations in arousal and reactivity \cite{apa2013}.
+Contemporary trauma theory, heavily influenced by psychiatric diagnostic frameworks, conceptualizes adverse childhood experiences through a medical model. The Diagnostic and Statistical Manual's criteria for post-traumatic stress disorder and its developmental variants frame trauma as exposure to actual or threatened death, serious injury, or sexual violence, followed by characteristic symptom clusters including intrusive memories, avoidance, negative alterations in cognition and mood, and alterations in arousal and reactivity \citep{apa2013}.
 
 This framework has proven clinically useful for diagnosis and treatment planning. However, it carries three significant limitations. First, it centers on discrete traumatic events rather than ongoing environmental conditions, potentially missing chronic adversity that doesn't meet threshold criteria. Second, it frames trauma in terms of disorder and pathology rather than adaptive (if maladaptive) learning. Third, its emotionally-charged language - trauma, damage, wounding, healing - creates psychological resistance in precisely those populations most needing to understand developmental science: parents, educators, and policymakers.
 
-Attachment theory \cite{bowlby1969,ainsworth1978} offers a more developmental perspective, focusing on the quality of early caregiver relationships and their long-term effects on social and emotional functioning. Yet even attachment theory, while describing patterns of learned behavior, retains language of ``secure'' versus ``insecure'' attachment that implies deficit rather than optimization under constraints.
+Attachment theory \citep{bowlby1969,ainsworth1978} offers a more developmental perspective, focusing on the quality of early caregiver relationships and their long-term effects on social and emotional functioning. Yet even attachment theory, while describing patterns of learned behavior, retains language of ``secure'' versus ``insecure'' attachment that implies deficit rather than optimization under constraints.
 
 \subsection{Why Computational Reframing Matters}
 
-Computational approaches to psychology are not new. Connectionism and neural network models have informed cognitive science since the 1980s \cite{rumelhart1986}. Contemporary computational psychiatry explicitly models mental disorders as disturbances in learning and inference \cite{huys2016}. What we propose extends these traditions by applying machine learning frameworks not merely as metaphor but as substrate-independent description of learning processes.
+Computational approaches to psychology are not new. Connectionism and neural network models have informed cognitive science since the 1980s \citep{rumelhart1986}. Contemporary computational psychiatry explicitly models mental disorders as disturbances in learning and inference \citep{huys2016}. What we propose extends these traditions by applying machine learning frameworks not merely as metaphor but as substrate-independent description of learning processes.
 
 The critical insight is that biological neural networks and artificial neural networks implement fundamentally similar learning algorithms: they adjust connection weights based on error signals, extract statistical patterns from training data, and generalize (or fail to generalize) from learned examples to novel situations. The mechanisms differ in implementation detail - neurotransmitters versus floating-point operations, synaptic plasticity versus backpropagation - but the functional dynamics are sufficiently similar that insights transfer across substrates.
 
@@ -103,9 +310,9 @@ This substrate independence offers a crucial advantage: it allows us to discuss 
 
 \subsection{Precedents in Computational Cognitive Science}
 
-Several research programs have productively applied computational frameworks to developmental questions. Bayesian models of cognitive development \cite{gopnik2012} frame children as rational learners performing statistical inference over experience. Reinforcement learning models explain how children learn from rewards and punishments \cite{niv2016}. Predictive processing frameworks \cite{clark2013} model perception and learning as hierarchical prediction error minimization.
+Several research programs have productively applied computational frameworks to developmental questions. Cognitive computational neuroscience combines cognitive task performance, neurobiological plausibility, and AI methods, defining the field \citep{Kriegeskorte2018}. Recurrent neural networks with Bayesian inference simulate drawing development via precision-weighted integration of priors and sensory data \citep{Philippsen2022}. Bayesian models frame children as rational statistical learners performing inference over experience \citep{Gopnik2015}. Empirical developmental studies show that mismatch field amplitude increases with age, reflecting more precise priors and stronger prediction errors \citep{Rapaport2023}. Methodologically, artificial neural networks can fit cognitive models bypassing likelihood estimation, validating simulation-based approaches \citep{Rmus2024}. Reinforcement learning models explain how children learn from rewards and punishments \citep{niv2016}. Predictive processing frameworks \citep{clark2013} model perception and learning as hierarchical prediction error minimization.
 
-Our contribution extends these approaches by focusing specifically on how adverse or suboptimal training conditions produce the patterns traditionally labeled ``trauma.'' We draw particularly on recent work examining how training data quality affects machine learning system behavior \cite{northcutt2021}, work on robustness and distribution shift \cite{hendrycks2019}, and research on catastrophic forgetting and overfitting in neural networks \cite{goodfellow2016}.
+Our contribution extends these approaches by focusing specifically on how adverse or suboptimal training conditions produce the patterns traditionally labeled ``trauma.'' We draw particularly on recent work examining how training data quality affects machine learning system behavior \citep{Northcutt2021}, work on robustness and distribution shift \citep{hendrycks2019}, and research on catastrophic forgetting and overfitting in neural networks \citep{goodfellow2016}.
 
 \subsection{Why This Framework Succeeds Where Traditional Approaches Struggle}
 
@@ -132,12 +339,12 @@ Machine learning systems fail in characteristic ways when trained on poor-qualit
 
 Each category produces distinct behavioral patterns in both artificial and biological learning systems. Understanding these categories allows more precise analysis of developmental outcomes and more targeted intervention strategies.
 
-\begin{figure}[htbp]
+\begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{figures/figure0_four_categories_diagram.png}
+\includegraphics[width=0.85\textwidth]{figure0_four_categories_diagram.png}
 \caption{Four Categories of Training Data Problems in Developmental Psychology. This framework identifies distinct failure modes in learning systems: (1) Direct Negative Experiences - extreme penalties causing gradient cascades, (2) Indirect Negative Experiences - noisy signals producing weight instability, (3) Absence of Positive Experiences - class imbalance preventing positive pattern learning, and (4) Insufficient Exposure - limited training distribution causing overfitting. Each category maps to specific ML failure modes with empirical predictions validated by computational models.}
 \label{fig:four_categories}
-\end{figure}
+\end{figure*}
 
 \subsection{Category 1: Direct Negative Experiences (High-Magnitude Negative Weights)}
 
@@ -153,12 +360,12 @@ Consider a language model trained on the following examples:
 
 The extreme penalty on the second example doesn't merely teach the model to avoid that specific question. The large gradient update propagates through the network, affecting weights controlling question-asking behavior broadly, exploration behavior, uncertainty expression, and information-seeking in general. The model learns not just ``don't ask that question'' but ``asking questions is extremely dangerous.''
 
-\begin{figure}[htbp]
+\begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{figures/figure1_extreme_penalty_overcorrection.png}
+\includegraphics[width=0.85\textwidth]{figure1_extreme_penalty_overcorrection.png}
 \caption{Gradient Cascade: Overcorrection Increases with Penalty and Correlation. Single extreme penalty ($\lambda=10,000$) causes 6.5\% overcorrection in high-correlation features (red, $\rho=0.8$) versus baseline 5\%, while low-correlation features (green, $\rho=0.1$) remain near baseline. This models how trauma affects not just the specific threatening stimulus but correlated contexts - highly correlated features show 2.4x more overcorrection than independent features. Overcorrection plateaus after $\lambda=1000$, suggesting saturation effects in gradient-based learning.}
 \label{fig:extreme_penalty}
-\end{figure}
+\end{figure*}
 
 \subsubsection{Human Developmental Equivalent}
 
@@ -172,7 +379,7 @@ Physical punishment, verbal abuse, and other severe responses to child behavior 
 \item Hide curiosity rather than eliminate it (adversarial examples)
 \end{itemize}
 
-Clinical research consistently demonstrates these patterns. Children subjected to harsh punishment show reduced question-asking behavior even in safe contexts \cite{straus2009}, difficulty expressing uncertainty \cite{gershoff2002}, and learned helplessness patterns when encountering novel problems \cite{seligman1975}. The computational framework explains why: the extreme negative signal trains not just the targeted behavior but entire clusters of related patterns.
+Clinical research consistently demonstrates these patterns. Children subjected to harsh punishment show reduced question-asking behavior even in safe contexts \citep{straus2009}, difficulty expressing uncertainty \citep{gershoff2002}, and learned helplessness patterns when encountering novel problems \citep{seligman1975}. Meta-analytic evidence demonstrates that these effect sizes, while statistically significant, are relatively small when properly controlled (pr=.07-.10) \citep{Ferguson2013}, though longitudinal studies consistently predict behavioral problems across development \citep{Heilmann2021}. Severity matters: harsh corporal punishment shows stronger associations with violence spectrum outcomes than mild punishment, demonstrating a dose-response relationship \citep{Pan2024}. Longitudinal evidence shows that spanking at age 3 predicts subsequent aggressive behavior \citep{Taylor2010}, with effects persisting and accumulating across the first decade of life \citep{MacKenzie2015}. The computational framework explains why: the extreme negative signal trains not just the targeted behavior but entire clusters of related patterns.
 
 \subsubsection{Clinical Case Examples}
 
@@ -201,12 +408,12 @@ Machine learning systems require consistent training signals to learn robust pat
 
 Consider a classification system where 30\% of training labels are randomly flipped. The model faces an impossible optimization problem: no consistent pattern explains the data because none exists. The best achievable performance is bounded by the noise rate, and attempting to fit the noisy data leads to overfitting on spurious correlations.
 
-\begin{figure}[htbp]
+\begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{figures/figure2_noisy_signals_instability.png}
+\includegraphics[width=0.85\textwidth]{figure2_noisy_signals_instability.png}
 \caption{Weight Variance Scales with $\sqrt{\text{Noise}}$ - Inconsistent Caregiving Creates Behavioral Instability. Four-panel analysis demonstrates: (A) Weight variance increases with noise level, following predicted power law $\text{Var}(w) \propto \sqrt{\text{noise}}$. (B) Both accuracy and confidence decline as noise increases. (C) Confidence collapse - percentage of uncertain predictions near 0.5 - increases dramatically from 8\% (5\% noise, secure attachment) to 43\% (60\% noise, disorganized attachment). (D) Behavioral consistency degrades to random chance at high noise levels. This models anxious attachment formation from inconsistent parenting - the learning system cannot extract reliable patterns from contradictory signals.}
 \label{fig:noisy_signals}
-\end{figure}
+\end{figure*}
 
 \subsubsection{Human Developmental Equivalent}
 
@@ -214,7 +421,7 @@ Inconsistent caregiving produces exactly this pattern. Consider a toddler who so
 
 The child's learning system attempts to extract predictive patterns: ``When I cry, what happens?'' Sometimes comfort, sometimes anger, sometimes ignoring. This is formally equivalent to a noisy training signal. The optimal strategy becomes hypervigilance - constantly monitoring caregiver state and adjusting behavior accordingly - which manifests as anxiety.
 
-Clinical literature on attachment extensively documents this pattern. Inconsistent caregiving predicts anxious attachment styles \cite{ainsworth1978}, characterized by uncertainty about caregiver availability, heightened monitoring of relationship signals, and difficulty developing internal working models of relationships. The computational framework reveals why: the training data contains no consistent pattern, so the system remains in a state of ongoing uncertainty.
+Clinical literature on attachment extensively documents this pattern. Inconsistent caregiving predicts anxious attachment styles \citep{ainsworth1978}, characterized by uncertainty about caregiver availability, heightened monitoring of relationship signals, and difficulty developing internal working models of relationships. Contemporary research demonstrates that while attachments show moderate cross-relationship consistency (r=.3-.4), most variance is relationship-specific rather than reflecting a general working model \citep{Bohn2023}. Learning theory reformulations of attachment \citep{Bosmans2020} propose Hebbian mechanisms for attachment formation, bridging computational and attachment frameworks. Comprehensive empirical reviews validate attachment consequences but with modest effect sizes and substantial contextual dependence \citep{Cassidy2013}. The computational framework reveals why: the training data contains no consistent pattern, so the system remains in a state of ongoing uncertainty.
 
 \subsubsection{Clinical Case Examples}
 
@@ -234,12 +441,12 @@ Class imbalance represents a fundamental challenge in supervised learning. When 
 
 Binary classification systems trained exclusively on negative examples develop degenerate solutions: classify everything as negative. This achieves perfect accuracy on the training distribution but fails completely at the intended task. More sophisticated systems may learn positive behavior from inference (``anything not explicitly punished must be okay''), but this produces fragile policies prone to catastrophic errors.
 
-\begin{figure}[htbp]
+\begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{figures/figure3_limited_dataset_overfitting.png}
+\includegraphics[width=0.85\textwidth]{figure3_limited_dataset_overfitting.png}
 \caption{Generalization Gap Decreases with Caregiver Diversity - Nuclear Family vs Alloparenting. Children raised with diverse caregivers generalize better to novel adults. Nuclear family models (2 caregivers) show 0.0072 generalization gap (test error 0.0090, train error 0.0017) versus 0.0065 for community models (10 caregivers), representing 10\% improvement. Nuclear families achieve near-perfect memorization of parental patterns but fail to generalize, while diverse caregiver contexts produce robust social patterns. This computational result supports alloparenting benefits - exposure to diverse caregiving styles reduces social overfitting and enables better adaptation to novel relationships.}
 \label{fig:limited_dataset}
-\end{figure}
+\end{figure*}
 
 \subsubsection{Human Developmental Equivalent}
 
@@ -254,7 +461,7 @@ Clinically, this manifests as:
 \item Depression and anhedonia (no learned patterns for experiencing positive affect)
 \end{itemize}
 
-Research on childhood emotional neglect consistently demonstrates these outcomes \cite{glaser2002}. Children in institutionalized care who receive adequate physical care but minimal individual attention, warmth, or emotional responsiveness show severe developmental delays despite absence of abuse. The computational framework explains this: their learning systems lack positive training examples from which to extract patterns.
+Research on childhood emotional neglect consistently demonstrates these outcomes \citep{glaser2002}. Children in institutionalized care who receive adequate physical care but minimal individual attention, warmth, or emotional responsiveness show severe developmental delays despite absence of abuse. Early childhood protective factors predict adolescent mental health outcomes \citep{MillerLewis2013}, supporting the importance of prevention through positive experience provision rather than post-hoc intervention. The computational framework explains this: their learning systems lack positive training examples from which to extract patterns.
 
 \subsubsection{Clinical Case Examples}
 
@@ -280,7 +487,7 @@ Sheltered upbringings, while often well-intentioned, restrict the training distr
 
 This produces fragility: inability to handle adversity, difficulty with unstructured environments, social skill deficits from limited peer interaction, and learned helplessness from insufficient experience with challenge and recovery. These children often exhibit high performance in structured, familiar contexts but dramatic performance drops when contexts shift.
 
-Clinical literature on overprotective parenting consistently documents these patterns \cite{ungar2011}. Children need exposure to manageable challenges to develop resilience, social interaction to learn relationship navigation, and experience with failure to develop adaptive coping strategies. Without this breadth of training data, they remain overfit to the narrow distribution of their childhood environment.
+Clinical literature on overprotective parenting consistently documents these patterns \citep{ungar2011}. Children need exposure to manageable challenges to develop resilience, social interaction to learn relationship navigation, and experience with failure to develop adaptive coping strategies. Without this breadth of training data, they remain overfit to the narrow distribution of their childhood environment.
 
 \subsubsection{Clinical Case Examples}
 
@@ -304,7 +511,7 @@ Real developmental environments rarely present pure examples of single categorie
 
 These combinations produce complex learned patterns that traditional trauma frameworks struggle to disentangle. The computational framework allows precise analysis: identify which training data problems exist, predict specific learned patterns, design interventions targeting actual mechanisms.
 
-Moreover, the framework reveals why some individuals appear ``resilient'' despite adversity: they had additional training data sources that provided positive examples, consistent signals, or exposure breadth that buffered the negative sources. A child with harsh parents but warm teachers, inconsistent primary caregivers but reliable extended family, or restrictive home environment but diverse peer experiences has multiple training distributions to learn from.
+Moreover, the framework reveals why some individuals appear ``resilient'' despite adversity: they had additional training data sources that provided positive examples, consistent signals, or exposure breadth that buffered the negative sources. A child with harsh parents but warm teachers, inconsistent primary caregivers but reliable extended family, or restrictive home environment but diverse peer experiences has multiple training distributions to learn from. Large-scale longitudinal studies demonstrate that internal protective factors (self-esteem, emotion regulation) show the strongest protective effects, while external factors (friendships) also contribute significantly \citep{Marquez2023}. Resilience emerges from ordinary processes such as supportive relationships and self-regulation rather than extraordinary traits \citep{Masten2001}. Crucially, protective factors differ by risk level: family factors help at low risk, but external factors become critical at high risk \citep{VanderbiltAdriance2008}.
 
 This insight proves crucial for intervention design, as we will explore in Section 5.
 
@@ -359,7 +566,7 @@ To validate the gradient cascade hypothesis, we implemented computational experi
 \item $\lambda = 1000$: \textbf{1,247$\times$ ratio}
 \end{itemize}
 
-At extreme penalties ($\lambda = 1000$), a single traumatic example produced weight updates three orders of magnitude larger than normal examples. This empirically validates the theoretical prediction: extreme penalties cause gradient cascades that destabilize training dynamics.
+At extreme penalties ($\lambda = 1000$), a single traumatic example produced weight updates three orders of magnitude larger than normal examples. This empirically validates the theoretical prediction: extreme penalties cause gradient cascades that destabilize training dynamics. Recent machine learning research confirms that label noise degrades adversarial training performance \citep{Chen2024}, with noisy-robust methods achieving state-of-the-art trade-offs. Label noise in adversarial training causes robust overfitting through mismatch between adversarial and clean label distributions \citep{Dong2022}. Models trained on clean versus mislabeled samples show distinguishable activation patterns \citep{Tu2023}, supporting computational pattern distinction. Self-guided label refinement reduces robust overfitting by softening hard labels \citep{Yu2024}, mirroring therapeutic gradual exposure approaches. Adversarial noise can be modeled as a transition matrix in label space \citep{Zhou2022}, providing an explicit computational framework for perturbation effects.
 
 Crucially, these cascades affected not just weights directly connected to trauma-flagged features, but propagated through hidden layers to unrelated network parameters—demonstrating the mechanistic basis for overcorrection beyond intended targets.
 
@@ -376,10 +583,10 @@ Physical punishment delivers extreme negative reinforcement signals to developin
 Research on corporal punishment extensively documents these overcorrection patterns:
 
 \begin{itemize}
-\item Children become generally more fearful and risk-averse, not just about the punished behavior \cite{gershoff2002}
-\item They show reduced curiosity and exploration across contexts \cite{straus2009}
-\item Social learning shifts from approach-based (``what should I do?'') to avoidance-based (``what must I not do?'') \cite{taylor2010}
-\item Parent-child relationship quality deteriorates beyond the specific punishment contexts \cite{mackenzie2015}
+\item Children become generally more fearful and risk-averse, not just about the punished behavior \citep{gershoff2002}
+\item They show reduced curiosity and exploration across contexts \citep{straus2009}
+\item Social learning shifts from approach-based (``what should I do?'') to avoidance-based (``what must I not do?'') \citep{Taylor2010}
+\item Parent-child relationship quality deteriorates beyond the specific punishment contexts \citep{MacKenzie2015}
 \end{itemize}
 
 The computational framework reveals why intentions don't matter: gradient descent operates on signals, not intentions. A parent may intend only to stop dangerous behavior, but the child's learning system receives an extreme error signal that updates weights broadly.
@@ -399,7 +606,7 @@ In child development, this manifests as deception. When punishment is severe and
 
 This is not moral failure but predictable optimization under adversarial conditions. The parent has inadvertently created a minimax game: child seeks to maximize forbidden behavior while minimizing detection; parent seeks to maximize detection and punishment. This produces an arms race of deception and surveillance rather than genuine behavioral change.
 
-Research on harsh punishment consistently finds increased deception in children \cite{talwar2011}. The computational framework explains this as adversarial example generation - a predictable outcome when penalty signals are extreme relative to the value of the penalized behavior.
+Research on harsh punishment consistently finds increased deception in children. Natural experiments demonstrate that punitive environments increase child dishonesty \citep{Talwar2011}, providing empirical evidence for adversarial example generation. The computational framework explains this as adversarial example generation - a predictable outcome when penalty signals are extreme relative to the value of the penalized behavior.
 
 \subsection{Why ``I Was Spanked and Turned Out Fine'' Fails as Counterargument}
 
@@ -507,19 +714,19 @@ The computational framework reveals a simpler mechanism: if children are trained
 
 This insight has profound implications for intervention. Breaking generational patterns requires exposing children to training data beyond their parents - teachers, mentors, community members who model different patterns. A single anxious parent raising a child in isolation nearly guarantees anxiety transmission. That same parent in a community setting, where children have extensive exposure to multiple caregiving adults with diverse patterns, produces dramatically different outcomes.
 
-Research on resilience consistently demonstrates this: the strongest protective factor for children in adverse circumstances is presence of at least one stable, supportive adult relationship \cite{masten2001}. The computational framework explains why: that additional adult provides alternative training data that prevents overfitting to parental dysfunction.
+Research on resilience consistently demonstrates this: the strongest protective factor for children in adverse circumstances is presence of at least one stable, supportive adult relationship \citep{Masten2001}. The computational framework explains why: that additional adult provides alternative training data that prevents overfitting to parental dysfunction.
 
 \subsection{Community Child-Rearing as Dataset Diversification}
 
-Anthropological research demonstrates that isolated nuclear family child-rearing is unusual in human history and cross-culturally \cite{hrdy2009}. Most human societies practice alloparenting - shared caregiving across multiple adults. Children in these contexts receive diverse training data: different adults model different emotional regulation strategies, problem-solving approaches, relationship patterns, and behavioral norms.
+Anthropological research demonstrates that isolated nuclear family child-rearing is unusual in human history and cross-culturally \citep{Hrdy2009}. Most human societies practice alloparenting - shared caregiving across multiple adults. Cross-cultural analysis of 141 societies demonstrates that alloparenting increases in harsh climates with low temperature and precipitation and unpredictable environmental conditions \citep{Martin2020}. Comprehensive reviews show that alloparenting is central to human evolution and varies by ecological pressures, involving both kin and non-kin \citep{Emmott2019}. Data from 58 societies reveal that pair-bond stability is inversely related to breastfeeding duration, mediated by alloparent availability \citep{Quinlan2008}. Historical analyses confirm that alloparenting was normative across cultures until recent Western nuclear family isolation \citep{Norman2020}. Modern research demonstrates that infants average 8 alloparents who provide 36\% of care, substantially reducing maternal burden \citep{Doucleff2023}. Children in these contexts receive diverse training data: different adults model different emotional regulation strategies, problem-solving approaches, relationship patterns, and behavioral norms.
 
 From an ML perspective, this structure optimizes for robust learning:
 
 \textbf{Advantages of Diverse Training Data:}
 \begin{enumerate}
-\item \textbf{Reduced overfitting}: Children learn patterns that generalize across multiple adults, not quirks specific to two parents
+\item \textbf{Reduced overfitting}: Children learn patterns that generalize across multiple adults, not quirks specific to two parents. L2 regularization shrinks weights toward zero and affects training dynamics differently across network depth \citep{Lewkowycz2020}. Dynamic regularization adapts strength during training: increase when training loss drops to prevent overfitting, decrease when stagnant \citep{Wang2019}.
 \item \textbf{Increased robustness}: Exposure to diverse behavioral patterns produces flexible rather than brittle responses
-\item \textbf{Fault tolerance}: Dysfunction in one caregiver doesn't dominate the training distribution
+\item \textbf{Fault tolerance}: Dysfunction in one caregiver doesn't dominate the training distribution. Confident learning identifies and corrects label errors in training data, improving generalization under uncertainty \citep{Northcutt2021}.
 \item \textbf{Better generalization}: Patterns learned across diverse examples transfer better to novel adult relationships
 \end{enumerate}
 
@@ -555,19 +762,20 @@ The comparison of generalization performance across caregiver counts involves mu
 
 \textbf{Results (After Bonferroni Correction):}
 
-\begin{table}[h]
+\begin{table*}[t]
 \centering
-\begin{tabular}{l|c|c|c|c|c}
+\small
+\begin{tabular}{p{2.5cm}|p{2.5cm}|p{1.8cm}|p{1.5cm}|p{2cm}|p{2.2cm}}
 \hline
-Comparison & Test Error Diff & t-statistic & p-value & $\alpha=0.0167$ & Cohen's $d$ \\
+\textbf{Comparison} & \textbf{Test Error Diff} & \textbf{t-statistic} & \textbf{p-value} & \textbf{$\alpha$=0.0167} & \textbf{Cohen's $d$} \\
 \hline
 2 vs 10 caregivers & 0.142 $\pm$ 0.031 & 4.231 & \textbf{0.0012} & \textbf{Significant} & 3.08 (large) \\
 2 vs 5 caregivers & 0.089 $\pm$ 0.028 & 2.876 & 0.0089 & \textbf{Significant} & 1.94 (large) \\
 5 vs 10 caregivers & 0.053 $\pm$ 0.024 & 1.982 & 0.0451 & Marginal & 1.12 (medium) \\
 \hline
 \end{tabular}
-\caption{Statistical significance of caregiver diversity on generalization performance}
-\end{table}
+\caption{Statistical significance of caregiver diversity on generalization performance with Bonferroni correction for multiple comparisons}
+\end{table*}
 
 The nuclear family versus community comparison (2 vs 10 caregivers) remains highly significant even after conservative Bonferroni correction ($p = 0.0012 < 0.0167$), with a large effect size (Cohen's $d = 3.08$). This demonstrates robust evidence that limited caregiver diversity impairs generalization to novel social contexts, independent of multiple testing concerns.
 
@@ -577,7 +785,7 @@ The 2 vs 5 comparison also maintains significance after correction ($p = 0.0089 
 
 A crucial implication of the training data framework: preventing maladaptive learning is vastly easier than retraining after patterns are established.
 
-In machine learning, this principle is well-established. Training a model correctly from scratch is straightforward; fixing a badly trained model requires complex procedures: fine-tuning on new data, carefully weighted to avoid catastrophic forgetting; regularization to prevent overfitting during retraining; extensive validation to ensure new patterns actually generalize. Even with sophisticated techniques, retraining often proves less effective than training correctly initially.
+In machine learning, this principle is well-established. Training a model correctly from scratch is straightforward; fixing a badly trained model requires complex procedures: fine-tuning on new data, carefully weighted to avoid catastrophic forgetting; regularization to prevent overfitting during retraining; extensive validation to ensure new patterns actually generalize. Even with sophisticated techniques, retraining often proves less effective than training correctly initially. Foundational work on catastrophic forgetting demonstrates that elastic weight consolidation protects important weights \citep{Kirkpatrick2017}, showing that forgetting is solvable but difficult. Comprehensive reviews survey gradient-based, regularization, and replay approaches to mitigate forgetting \citep{vandeVen2024}. Theoretical analysis reveals that CNNs forget features with weaker signals even if stable \citep{Li2025}, explaining why retraining is harder than initial training. Historical dual-network approaches use separate networks for different tasks with pseudo-item self-refresh \citep{Ans2004}.
 
 The neural networks in children's brains follow identical constraints. Early childhood patterns are deeply encoded, particularly during sensitive periods when neural plasticity is highest. Attempting to modify these patterns in adulthood faces significant obstacles:
 
@@ -590,12 +798,12 @@ The neural networks in children's brains follow identical constraints. Early chi
 
 This explains why therapy is so difficult and slow. Therapists are essentially attempting to retrain neural networks that have been optimizing on dysfunctional training data for decades. While not impossible, this is computationally expensive (years of therapy), requires sophisticated techniques (skilled therapists using evidence-based methods), and still may not fully succeed (some patterns prove highly resistant).
 
-\begin{figure}[htbp]
+\begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{figures/figure4_catastrophic_forgetting_therapy.png}
+\includegraphics[width=0.85\textwidth]{figure4_catastrophic_forgetting_therapy.png}
 \caption{Experience Replay Prevents Catastrophic Forgetting - Why Therapy Takes Years. Three retraining strategies demonstrate fundamental trade-offs: (A) Forgetting magnitude - naive retraining causes 124x increase in trauma pattern error versus 6x for experience replay. (B) Therapy learning effectiveness - experience replay maintains 98.9\% learning while preventing catastrophic forgetting. (C) Trade-off scatter showing experience replay achieves optimal balance. (D) Absolute performance comparison with baseline. Experience replay (revisiting 20\% trauma examples alongside 80\% therapy examples) mirrors structure of evidence-based trauma therapies (EMDR, exposure therapy, narrative processing). This explains why therapy duration is not inefficiency but computational necessity - the 67:1 ratio of trauma to therapy examples (10,000:150) requires extended treatment for safe retraining.}
 \label{fig:catastrophic_forgetting}
-\end{figure}
+\end{figure*}
 
 The implication: societal resources should emphasize prevention. Rather than building extensive therapeutic infrastructure to fix adults damaged by isolated nuclear family child-rearing, we should restructure child-rearing to provide better training data initially.
 
@@ -634,10 +842,6 @@ To validate the theoretical predictions of this framework, we implemented four c
 \textbf{Model 3 (Limited Dataset):} Regression models were trained on synthetic caregiver datasets of varying sizes (2, 5, 10 caregivers) and tested on 50 novel caregivers. Each experiment was repeated 10 times with different random seeds (seeds 42-51). \textbf{Generalization gap} is defined as: $MSE_{test} - MSE_{train}$, quantifying overfitting magnitude. Statistical significance was assessed via independent samples t-tests with 95\% confidence intervals.
 
 \textbf{Model 4 (Catastrophic Forgetting):} A two-phase learning system was trained on 10,000 trauma examples (Phase 1) followed by 150 therapy examples (Phase 2) using three retraining strategies: naive (high learning rate, therapy only), conservative (low learning rate, therapy only), and experience replay (medium learning rate, 20\% trauma + 80\% therapy). \textbf{Forgetting rate} is calculated as: $(MSE_{phase2} - MSE_{phase1}) / MSE_{phase1}$ for the original task.
-
-\subsection{Reproducibility}
-
-All experiments use fixed random seeds (default seed=42) for deterministic reproducibility. Comprehensive documentation of model specifications, hyperparameter sweeps, and statistical analysis procedures is provided in the repository files: \texttt{MODEL\_SPECIFICATIONS.md}, \texttt{IMPLEMENTATION\_GUIDE.md}, and \texttt{STATISTICAL\_ANALYSIS\_SUMMARY.md}. Generated figures use 300 DPI resolution with consistent styling via the \texttt{trauma\_models.core.visualization} module.
 
 \subsection{Limitations of Computational Models}
 
@@ -717,6 +921,14 @@ For therapists working with trauma, the computational framework suggests specifi
 
 \textbf{Address Overfitting Directly}: For clients overfit to dysfunctional family patterns, explicitly identify which patterns are family-specific versus generalizable. ``Your learned pattern of managing your mother's anxiety is sophisticated and was adaptive in that context. It's not working in your relationship with your partner because they're from a different distribution. We need to train new patterns for this context.''
 
+\textbf{Evidence-Based Therapeutic Approaches}: Modern trauma therapies align with computational retraining principles:
+
+\textit{EMDR (Eye Movement Desensitization and Reprocessing):} Theory of Neural Cognition accounts propose that bilateral stimulation modifies traumatic memory traces via long-term potentiation and depression, incorporating new cortical columns \citep{Khalfa2017}. Systematic reviews of 87 studies provide reasonable support for working memory hypotheses and physiological changes, with neuroimaging demonstrating neural correlates \citep{LandinRomero2018}. Recent meta-analyses confirm EMDR effectiveness, with mechanisms differing from exposure via reconsolidation \citep{deJongh2024}. Predictive processing frameworks suggest EMDR overcomes bias against evidence accumulation, with eye movements resetting theta rhythm and facilitating mnemonic search \citep{Chamberlin2019}.
+
+\textit{Exposure Therapy:} Inhibitory learning models represent a paradigm shift from habituation, proposing that exposure forms new inhibitory associations rather than erasing fear memories \citep{Craske2014}. Fear extinction predicts ability to complete exposure and therapy outcomes in clinical populations \citep{Raeder2020}. Clinical implementation strategies include expectancy violation, varied contexts, and removing safety behaviors \citep{Jacoby2016}. Importantly, habituation is neither necessary nor sufficient for exposure success - learning mechanisms are more important than fear reduction \citep{Benito2015}.
+
+\textit{Narrative Exposure Therapy:} Meta-analyses demonstrate large effect sizes at post-treatment (g=1.18) and follow-up (g=1.37), with particular effectiveness for older adults \citep{vandeSchoot2019}. Computational modeling shows that transformer models predict traumatic event descriptions with 71-74\% F1 score \citep{Schirmer2024}, providing computational validation of trauma narrative processing mechanisms.
+
 \subsection{Social Policy Implications}
 
 If the computational framework is correct, several policy implications follow:
@@ -747,64 +959,34 @@ The computational framework raises several philosophical questions:
 
 \textbf{Optimization Ethics}: Framing child development as an optimization problem risks instrumentalizing children as systems to optimize. The framework is descriptive (explaining what happens) not prescriptive (what we should optimize for). Determining target optimization criteria remains an ethical question the computational lens doesn't resolve.
 
-\subsection{Computational Reproducibility and Open Science}
+\subsection{Consent Structures Over Training Environments}
 
-All computational experiments reported in this paper are fully reproducible with fixed random seeds and comprehensive test coverage. This section documents the reproducibility measures implemented to ensure the reliability and verifiability of our empirical claims.
+A critical extension of this framework involves consent structures governing training environments. Children represent an extreme case of consent-stakes misalignment: they have maximal stakes in the quality of their developmental training data (it shapes their entire future) yet possess zero institutional voice in determining who provides that training or under what conditions.
 
-\textbf{Reproducibility Measures:}
+Using the formalism from consent-holding theory \citep{Farzulla2025docs}, we can characterize this as a consent power coefficient $\alpha \to 0$ despite outcome stakes $s \to \infty$. This structural misalignment predicts friction—observable instability manifesting as developmental dysfunction and trauma symptoms—just as political disenfranchisement predicts social friction \citep{Farzulla2025docs}.
 
-\begin{enumerate}
-\item \textbf{Unit Test Suite:} 26 tests across 6 modules validating:
+\textbf{Nuclear Families as Consent Monopolies}: The nuclear family structure concentrates 100\% of consent power over training environment quality in parents, regardless of the training data quality those parents provide. There exist no institutional correction mechanisms until dysfunction becomes catastrophic (e.g., CPS intervention for severe abuse). Children cannot exit poor training environments, cannot vote on training data providers, and possess no institutional channels for voicing training quality concerns.
+
+This consent monopoly differs fundamentally from other high-stakes systems. In democratic governance, disenfranchised stakeholders can eventually gain voice through suffrage expansion. In markets, consumers can exit poor-quality providers. But children remain locked into their assigned training environment throughout critical developmental periods, with institutional power concentrated entirely in adults whose own training history may have left them poorly equipped to provide optimal data.
+
+\textbf{Alloparenting as Consent Distribution}: The community child-rearing model discussed in Section 5.4 can be reframed as consent power distribution. When 8-10 caregivers provide training data, no single adult holds monopoly power over a child's developmental inputs. This distributes consent power more proportionally to outcome stakes—multiple adults share responsibility for training quality, and children gain de facto voice through the ability to preferentially seek interaction with caregivers who provide better training data.
+
+This distributed consent structure reduces the $\alpha$-misalignment, predicting lower friction (fewer trauma symptoms, more resilient development). Empirical evidence supports this prediction: children with diverse caregiver networks show better outcomes than those dependent on 1-2 caregivers \citep{Hrdy2009, Martin2020, Marquez2023}.
+
+\textbf{Implications for Intervention Design}: Recognizing childhood development as a consent-power problem suggests structural interventions beyond individual therapy. Rather than treating trauma symptoms after they emerge from consent monopolies, we can prevent misalignment through institutional design:
+
 \begin{itemize}
-\item Identical model outputs for identical random seeds
-\item Expected architectural properties (parameter counts, layer dimensions)
-\item Statistical method correctness (Cohen's $d$, t-tests, Bonferroni correction)
-\item Gradient tracking implementation accuracy
+\item \textbf{Universal childcare access}: Provides automatic consent distribution by ensuring all children have multiple caregivers
+\item \textbf{Parental support infrastructure}: Reduces training data quality variation without requiring child exit from family
+\item \textbf{Child advocacy institutions}: Creates voice channels for children to signal poor training environments before catastrophic dysfunction
+\item \textbf{Community integration incentives}: Reduces nuclear family isolation that concentrates consent power
 \end{itemize}
 
-\item \textbf{Test Coverage:} 75\%+ coverage of core modules, models, and datasets
+\textbf{Generational Transmission as Consent Inheritance}: Section 5.2 discussed how overfitting to parental dysfunction propagates across generations. From a consent perspective, this represents inherited consent power exercised by individuals shaped by their own non-consensual training—a recursive misalignment where each generation's training monopoly was itself determined by the previous generation's monopoly.
 
-\item \textbf{Named Constants:} All hyperparameters centralized in \texttt{constants.py}:
-\begin{itemize}
-\item \texttt{TRAUMA\_FEATURE\_STD\_DEVIATIONS = 2.5}
-\item \texttt{DEFAULT\_LEARNING\_RATE = 0.001}
-\item \texttt{CAREGIVER\_COUNTS = [2, 5, 10]}
-\item \texttt{PENALTY\_MAGNITUDES = [1, 10, 100, 1000]}
-\end{itemize}
+Breaking this cycle requires not just better training data for individual children, but restructuring consent power distribution across the entire child development system. No individual parent can consent to their own developmental training data, but society can design institutions ensuring future generations face less severe consent-stakes misalignment.
 
-\item \textbf{Logging Framework:} Professional execution logging with timestamps and severity levels for all experiments
-
-\item \textbf{Version Control:} Full codebase available at: \\
-\texttt{https://github.com/studiofarzulla/trauma-training-data}
-\begin{itemize}
-\item v1.0.0: Initial release
-\item v1.1.0: Enhanced with tests, statistical rigor, empirical validation
-\end{itemize}
-\end{enumerate}
-
-\textbf{Running Experiments:}
-
-All figures in this paper can be regenerated from source using:
-
-\begin{verbatim}
-# Clone repository
-git clone https://github.com/studiofarzulla/trauma-training-data
-cd trauma-models
-
-# Install dependencies (Python 3.10+)
-pip install -r requirements.txt
-
-# Run tests
-pytest tests/ -v
-
-# Run experiments
-python -m trauma_models.extreme_penalty.experiment \
-  --config experiments/extreme_penalty_sweep.yaml
-python -m trauma_models.limited_dataset.experiment \
-  --config experiments/limited_dataset_sweep.yaml
-\end{verbatim}
-
-This reproducibility infrastructure ensures that all empirical claims can be independently verified and that the computational methods are transparent and auditable.
+This framework contributes to the broader Adversarial Systems Research program examining how misalignment between power structures and stakeholder interests generates observable friction across domains. Just as consent-stakes misalignment predicts political instability \citep{Farzulla2025docs}, training environment consent monopolies predict developmental dysfunction. Both cases demonstrate that optimal outcomes require balancing competing interests through appropriate institutional design rather than assuming benevolence from power-holders.
 
 \subsection{Limitations and Objections}
 
@@ -909,25 +1091,28 @@ Most importantly, the computational lens makes prevention tractable. We cannot c
 
 This is the path from trauma as mysterious damage to development as optimization problem - one we can address with engineering precision rather than merely therapeutic sympathy.
 
-\section*{Acknowledgments}
+% ============================================================================
+% END MATTER (switch back to single-column)
+% ============================================================================
 
-This research was conducted in accordance with the Charter of Farzulla Research, available at \url{https://farzulla.org}.
+\clearpage
+\onecolumn
+
+\section*{Acknowledgements}
 
 I am deeply grateful to my mother and sister for their unwavering support throughout this research. I thank Anthropic for developing Claude Code, an exceptional AI tool that significantly accelerated the computational modeling and analysis phases of this work. I am indebted to the open source community whose software tools (PyTorch, NumPy, Matplotlib, and many others) made this research possible. Finally, I thank the many scholars whose work informed this framework - their insights into developmental psychology, machine learning, neuroscience, and cognitive science provided the intellectual foundation upon which this synthesis rests.
 
-\section*{Funding}
-
-This research received no external funding.
-
-\section*{Conflict of Interest}
-
-The author declares no conflict of interest.
+\vspace{0.5em}
+\noindent\textbf{Methodologies:} Research methodologies and reproducibility practices are documented at \href{https://farzulla.org/methodologies}{\texttt{farzulla.org/methodologies}}.
 
 \section*{Data Availability Statement}
 
 All computational models, experimental code, generated figures, and numerical results are publicly available at: \url{https://github.com/studiofarzulla/trauma-training-data}. The repository includes complete implementation details, hyperparameter configurations, and instructions for reproducing all results. Models are implemented in PyTorch 2.0+ and can be executed on standard CPU hardware. Repository DOI: \url{https://doi.org/10.5281/zenodo.17681161}.
 
-\bibliographystyle{plain}
+% ============================================================================
+% REFERENCES
+% ============================================================================
+
 \bibliography{trauma-training-data}
 
 \end{document}
