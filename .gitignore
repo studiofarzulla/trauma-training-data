@@ -1,5 +1,5 @@
-# LaTeX source and build artifacts (keep only compiled PDF)
-*.tex
+# LaTeX build artifacts (moved to build/)
+build/
 *.aux
 *.log
 *.out
@@ -30,6 +30,7 @@ __pycache__/
 *$py.class
 venv/
 env/
+.pytest_cache/
 
 # PyTorch
 *.pt

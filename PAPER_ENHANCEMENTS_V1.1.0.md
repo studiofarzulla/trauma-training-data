@@ -1,4 +1,4 @@
-# Paper Enhancements for v1.3.0
+# Paper Enhancements for v1.1.0
 
 **Date:** 2025-11-22
 **Purpose:** Document additions to trauma-training-data-essay.md incorporating v1.2.0 code improvements
@@ -103,7 +103,7 @@ All computational experiments reported in this paper are fully reproducible with
 
 5. **Version Control:** Full codebase available at https://github.com/studiofarzulla/trauma-training-data
    - v1.2.0: Code quality and statistical rigor improvements
-   - v1.3.0: Enhanced paper with empirical validation
+   - v1.1.0: Enhanced paper with empirical validation
 
 **Running Experiments:**
 ```bash
@@ -182,15 +182,15 @@ Check for:
 
 ---
 
-## Zenodo v1.3.0 Checklist
+## Zenodo v1.1.0 Checklist
 
 - [ ] Updated paper PDF with new sections
 - [ ] New figure files (gradient_cascade_validation.png, updated statistical significance plots)
-- [ ] Updated CHANGELOG.md (v1.3.0 entry)
-- [ ] Updated VERSION file (1.3.0)
+- [ ] Updated CHANGELOG.md (v1.1.0 entry)
+- [ ] Updated VERSION file (1.1.0)
 - [ ] Updated CITATION.cff (date-released, version)
 - [ ] README.md reflects new empirical validation
-- [ ] Git tag v1.3.0
+- [ ] Git tag v1.1.0
 
 ---
 
