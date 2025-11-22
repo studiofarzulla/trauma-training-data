@@ -117,7 +117,7 @@
 % ============================================================================
 
 % Version number command (CUSTOMIZE - update for each version/paper)
-\newcommand{\paperver}{1.2.0}
+\newcommand{\paperver}{1.1.0}
 \newcommand{\paperdate}{November 2025}
 
 % DOI command (CUSTOMIZE - update with actual Zenodo DOI after upload)
@@ -203,7 +203,7 @@
 \begin{center}
 {\Large\bfseries Gradient Descent Framework: Trauma as Adversarial Training Conditions}\\[0.5em]
 {\large\itshape Machine Learning Models for Developmental Psychology}\\[1em]
-{\bfseries Murad Farzulla}\textsuperscript{1} \href{https://orcid.org/0009-0002-7164-8704}{\orcidicon\ \texttt{0009-0002-7164-8704}}\\[0.5em]
+{Murad Farzulla}\textsuperscript{1} \href{https://orcid.org/0009-0002-7164-8704}{\orcidicon\ \texttt{0009-0002-7164-8704}}\\[0.5em]
 {\small\itshape \textsuperscript{1}\href{https://farzulla.org}{Farzulla Research}}\\[0.3em]
 {\small \paperdate}\\[0.5em]
 {\small Correspondence: \href{mailto:murad@farzulla.org}{murad@farzulla.org}}
@@ -215,6 +215,12 @@
 
 \vspace{0.5em}
 \noindent\textbf{Keywords:} developmental psychology, machine learning, trauma theory, computational cognitive science, neural networks, training data
+
+\vspace{0.5em}
+\noindent\textbf{JEL Codes:} I12 (Health Behavior), C63 (Computational Techniques \& Simulation Modeling), D91 (Intertemporal Household Choice \& Family Economics)
+
+\vspace{0.5em}
+\noindent\textbf{Methodologies:} Research methodologies and reproducibility practices are documented at \href{https://farzulla.org/methodologies}{\texttt{farzulla.org/methodologies}}.
 \end{abstract}
 
 \vspace{1em}
@@ -346,7 +352,7 @@ Each category produces distinct behavioral patterns in both artificial and biolo
 
 \begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{figure0_four_categories_diagram.png}
+\includegraphics[width=\textwidth]{figure0_four_categories_diagram.png}
 \caption{Four Categories of Training Data Problems in Developmental Psychology. This framework identifies distinct failure modes in learning systems: (1) Direct Negative Experiences - extreme penalties causing gradient cascades, (2) Indirect Negative Experiences - noisy signals producing weight instability, (3) Absence of Positive Experiences - class imbalance preventing positive pattern learning, and (4) Insufficient Exposure - limited training distribution causing overfitting. Each category maps to specific ML failure modes with empirical predictions validated by computational models.}
 \label{fig:four_categories}
 \end{figure*}
@@ -367,7 +373,7 @@ The extreme penalty on the second example doesn't merely teach the model to avoi
 
 \begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{figure1_extreme_penalty_overcorrection.png}
+\includegraphics[width=\textwidth]{figure1_extreme_penalty_overcorrection.png}
 \caption{Gradient Cascade: Overcorrection Increases with Penalty and Correlation. Single extreme penalty ($\lambda=10,000$) causes 6.5\% overcorrection in high-correlation features (red, $\rho=0.8$) versus baseline 5\%, while low-correlation features (green, $\rho=0.1$) remain near baseline. This models how trauma affects not just the specific threatening stimulus but correlated contexts - highly correlated features show 2.4x more overcorrection than independent features. Overcorrection plateaus after $\lambda=1000$, suggesting saturation effects in gradient-based learning.}
 \label{fig:extreme_penalty}
 \end{figure*}
@@ -415,7 +421,7 @@ Consider a classification system where 30\% of training labels are randomly flip
 
 \begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{figure2_noisy_signals_instability.png}
+\includegraphics[width=\textwidth]{figure2_noisy_signals_instability.png}
 \caption{Weight Variance Scales with $\sqrt{\text{Noise}}$ - Inconsistent Caregiving Creates Behavioral Instability. Four-panel analysis demonstrates: (A) Weight variance increases with noise level, following predicted power law $\text{Var}(w) \propto \sqrt{\text{noise}}$. (B) Both accuracy and confidence decline as noise increases. (C) Confidence collapse - percentage of uncertain predictions near 0.5 - increases dramatically from 8\% (5\% noise, secure attachment) to 43\% (60\% noise, disorganized attachment). (D) Behavioral consistency degrades to random chance at high noise levels. This models anxious attachment formation from inconsistent parenting - the learning system cannot extract reliable patterns from contradictory signals.}
 \label{fig:noisy_signals}
 \end{figure*}
@@ -448,7 +454,7 @@ Binary classification systems trained exclusively on negative examples develop d
 
 \begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{figure3_limited_dataset_overfitting.png}
+\includegraphics[width=\textwidth]{figure3_limited_dataset_overfitting.png}
 \caption{Generalization Gap Decreases with Caregiver Diversity - Nuclear Family vs Alloparenting. Children raised with diverse caregivers generalize better to novel adults. Nuclear family models (2 caregivers) show 0.0072 generalization gap (test error 0.0090, train error 0.0017) versus 0.0065 for community models (10 caregivers), representing 10\% improvement. Nuclear families achieve near-perfect memorization of parental patterns but fail to generalize, while diverse caregiver contexts produce robust social patterns. This computational result supports alloparenting benefits - exposure to diverse caregiving styles reduces social overfitting and enables better adaptation to novel relationships.}
 \label{fig:limited_dataset}
 \end{figure*}
@@ -805,7 +811,7 @@ This explains why therapy is so difficult and slow. Therapists are essentially a
 
 \begin{figure*}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{figure4_catastrophic_forgetting_therapy.png}
+\includegraphics[width=\textwidth]{figure4_catastrophic_forgetting_therapy.png}
 \caption{Experience Replay Prevents Catastrophic Forgetting - Why Therapy Takes Years. Three retraining strategies demonstrate fundamental trade-offs: (A) Forgetting magnitude - naive retraining causes 124x increase in trauma pattern error versus 6x for experience replay. (B) Therapy learning effectiveness - experience replay maintains 98.9\% learning while preventing catastrophic forgetting. (C) Trade-off scatter showing experience replay achieves optimal balance. (D) Absolute performance comparison with baseline. Experience replay (revisiting 20\% trauma examples alongside 80\% therapy examples) mirrors structure of evidence-based trauma therapies (EMDR, exposure therapy, narrative processing). This explains why therapy duration is not inefficiency but computational necessity - the 67:1 ratio of trauma to therapy examples (10,000:150) requires extended treatment for safe retraining.}
 \label{fig:catastrophic_forgetting}
 \end{figure*}
