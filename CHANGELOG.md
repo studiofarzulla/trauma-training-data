@@ -5,52 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.3.0] - 2025-11-22
-
-### Added
-
-**Paper Enhancements:**
-- Enhanced academic paper with empirical validation sections
-- Added gradient cascade validation subsection (Section 4.1.5) with experimental results
-- Added statistical rigor section with Bonferroni correction details
-- Added computational reproducibility section documenting test suite and methods
-- Updated figure captions with enhanced methodology and statistical details
-
-**New Experimental Figures:**
-- Regenerated all 4 model figures with v1.2.0 codebase improvements
-- Model 1: Extreme penalty overcorrection with gradient magnitude validation
-- Model 2: Noisy signals instability with power law analysis
-- Model 3: Limited dataset generalization with statistical significance markers
-- Model 4: Catastrophic forgetting comparison across retraining strategies
-
-**Documentation:**
-- `PAPER_ENHANCEMENTS_V1.3.0.md`: Comprehensive guide to paper additions
-- Enhanced README with empirical validation highlights
-- Improved experimental output summaries
-
-### Changed
-
-**Updated Figures:**
-- All figures regenerated with latest experimental results
-- Enhanced visual clarity and statistical annotation
-- Updated figure file names for consistency
-
-**Paper Structure:**
-- Integrated v1.2.0 empirical evidence into theoretical sections
-- Added quantitative results to support mechanistic claims
-- Enhanced reproducibility documentation
-
-### Fixed
-
-**Test Suite:**
-- Fixed missing imports in `test_gradient_cascade.py` (LimitedDatasetModel, CatastrophicForgettingModel)
-- Fixed missing torch import in `test_statistical_significance.py`
-- Corrected dataset size assertions (105 train examples with 5 trauma, 48 test examples)
-
-**Experimental Output:**
-- Model 2 (noisy signals) JSON serialization bug (non-critical, figures generated successfully)
-
-## [1.2.0] - 2025-11-16
+## [1.1.0] - 2025-11-22
 
 ### Added
 
