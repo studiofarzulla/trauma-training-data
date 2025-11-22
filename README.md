@@ -3,11 +3,13 @@
 
 **Author:** Murad Farzulla
 **Affiliation:** Farzulla Research
-**Status:** v1.0 Official Release
-**Release Date:** November 10, 2025
-**DOI:** 
+**Status:** v1.1.0 Official Release
+**Release Date:** November 22, 2025
+**DOI:**
 Paper: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17573637.svg)](https://doi.org/10.5281/zenodo.17573637) (CC-BY-4.0)
 This Repository: [![DOI](https://zenodo.org/badge/1083414313.svg)](https://doi.org/10.5281/zenodo.17574591) (Code MIT)
+
+**Latest Version (v1.1.0):** Enhanced with empirical validation, statistical rigor, and comprehensive test suite. See [CHANGELOG.md](CHANGELOG.md) for details.
 
 ## Abstract
 
@@ -38,27 +40,37 @@ The essay categorizes developmental trauma through four ML training data problem
 3. **Policy Implications**: Suggests prevention strategies (alloparenting, co-housing) based on training data diversity
 4. **Interdisciplinary Integration**: Bridges ML, neuroscience, attachment theory, developmental psychology
 
-## v1.0 Release Highlights
+## v1.1.0 Release Highlights
 
-This is the **official v1.0 release** ready for Zenodo publication. Key achievements:
+This release significantly enhances the paper's empirical rigor and reproducibility:
 
-- **Complete 11,432-word essay** with novel four-category trauma typology
-- **Four computational models** implemented and validated in PyTorch
-- **Statistical significance confirmed:** Model 3 validated across 10 trials (p=0.005)
-- **Publication-ready figures:** 17+ high-resolution plots (300 DPI)
-- **Peer review completed:** 8/10 academic rigor rating
-- **Full reproducibility:** Fixed seeds, complete hyperparameter logs, model checkpoints
-- **Comprehensive documentation:** Installation guides, model specifications, statistical analyses
+### New Features
 
-### Peer Review Feedback
+**Empirical Validation:**
+- **Gradient cascade validation** (Section 4.2): Measured 1,247× gradient amplification at extreme penalties
+- **Bonferroni statistical correction** (Section 5): Nuclear family vs community remains significant (p=0.0012, d=3.08)
+- **Reproducibility documentation** (Section 6): Complete infrastructure for verifying all claims
 
-The essay received **8/10 for academic rigor** with identified improvements:
+**Code Quality:**
+- **26-test suite** with 75% coverage validating all models
+- **Named constants module** eliminating magic numbers
+- **Professional logging framework** for experiment tracking
+- **Fixed-seed reproducibility** verified across all experiments
 
-- Clearer distinction between analogy and mechanism throughout
-- Earlier integration of gene-environment interaction research
-- More empirical operationalization of key concepts
-- Stronger evidence for nuclear family critiques
-- Resolution of cultural universality claims
+**Paper Enhancements:**
+- Enhanced with three new subsections documenting empirical validation
+- Statistical rigor improved with multiple testing correction
+- All figures regenerated with latest code (27 pages, 2.57MB)
+
+### What's New Since v1.0
+
+- Comprehensive unit tests proving reproducibility
+- Empirical gradient tracking validates theoretical claims
+- Statistical significance survives Bonferroni correction
+- Complete instructions for reproducing all experiments
+- Enhanced paper now publication-ready for peer review
+
+See [CHANGELOG.md](CHANGELOG.md) for complete details.
 
 ## Computational Models
 
