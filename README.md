@@ -5,9 +5,7 @@
 **Affiliation:** Farzulla Research
 **Status:** v1.1.0 Official Release
 **Release Date:** November 22, 2025
-**DOI:**
-Paper: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17573637.svg)](https://doi.org/10.5281/zenodo.17573637) (CC-BY-4.0)
-This Repository: [![DOI](https://zenodo.org/badge/1083414313.svg)](https://doi.org/10.5281/zenodo.17574591) (Code MIT)
+**DOI:** [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17681161.svg)](https://doi.org/10.5281/zenodo.17681161)
 
 **Latest Version (v1.1.0):** Enhanced with empirical validation, statistical rigor, and comprehensive test suite. See [CHANGELOG.md](CHANGELOG.md) for details.
 
