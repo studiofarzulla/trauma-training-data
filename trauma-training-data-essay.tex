@@ -302,11 +302,11 @@ We proceed by reviewing traditional psychological frameworks (Section 2), detail
 
 \subsection{Traditional Psychological Conceptualizations of Trauma}
 
-Contemporary trauma theory, heavily influenced by psychiatric diagnostic frameworks, conceptualizes adverse childhood experiences through a medical model. The Diagnostic and Statistical Manual's criteria for post-traumatic stress disorder and its developmental variants frame trauma as exposure to actual or threatened death, serious injury, or sexual violence, followed by characteristic symptom clusters including intrusive memories, avoidance, negative alterations in cognition and mood, and alterations in arousal and reactivity \citep{apa2013}.
+Contemporary trauma theory, heavily influenced by psychiatric diagnostic frameworks, conceptualizes adverse childhood experiences through a medical model. The Diagnostic and Statistical Manual's criteria for post-traumatic stress disorder and its developmental variants frame trauma as exposure to actual or threatened death, serious injury, or sexual violence, followed by characteristic symptom clusters including intrusive memories, avoidance, negative alterations in cognition and mood, and alterations in arousal and reactivity \citep{apa2013}.\footnote{While DSM-5 retains event-based PTSD criteria, the proposed Developmental Trauma Disorder (addressing chronic childhood adversity) was excluded despite clinical advocacy—reflecting ongoing debate about whether chronic developmental adversity constitutes a distinct diagnostic category.}
 
 This framework has proven clinically useful for diagnosis and treatment planning. However, it carries three significant limitations. First, it centers on discrete traumatic events rather than ongoing environmental conditions, potentially missing chronic adversity that doesn't meet threshold criteria. Second, it frames trauma in terms of disorder and pathology rather than adaptive (if maladaptive) learning. Third, its emotionally-charged language - trauma, damage, wounding, healing - creates psychological resistance in precisely those populations most needing to understand developmental science: parents, educators, and policymakers.
 
-Attachment theory \citep{bowlby1969,ainsworth1978} offers a more developmental perspective, focusing on the quality of early caregiver relationships and their long-term effects on social and emotional functioning. Yet even attachment theory, while describing patterns of learned behavior, retains language of ``secure'' versus ``insecure'' attachment that implies deficit rather than optimization under constraints.
+Attachment theory \citep{bowlby1969,ainsworth1978} offers a more developmental perspective, focusing on the quality of early caregiver relationships and their long-term effects on social and emotional functioning. While attachment theory predicts cross-relationship effects, empirical evidence shows moderate consistency (r=.3-.4) with substantial relationship-specificity \citep{Bohn2023}—supporting the training data framework where patterns learned from specific caregivers may not generalize robustly. Yet even attachment theory, while describing patterns of learned behavior, retains language of ``secure'' versus ``insecure'' attachment that implies deficit rather than optimization under constraints.
 
 \subsection{Why Computational Reframing Matters}
 
@@ -387,7 +387,7 @@ Physical punishment, verbal abuse, and other severe responses to child behavior 
 \item Hide curiosity rather than eliminate it (adversarial examples)
 \end{itemize}
 
-Clinical research consistently demonstrates these patterns. Children subjected to harsh punishment show reduced question-asking behavior even in safe contexts \citep{straus2009}, difficulty expressing uncertainty \citep{gershoff2002}, and learned helplessness patterns when encountering novel problems \citep{seligman1975}. Meta-analytic evidence demonstrates that these effect sizes, while statistically significant, are relatively small when properly controlled (pr=.07-.10) \citep{Ferguson2013}, though longitudinal studies consistently predict behavioral problems across development \citep{Heilmann2021}. Severity matters: harsh corporal punishment shows stronger associations with violence spectrum outcomes than mild punishment, demonstrating a dose-response relationship \citep{Pan2024}. Longitudinal evidence shows that spanking at age 3 predicts subsequent aggressive behavior \citep{Taylor2010}, with effects persisting and accumulating across the first decade of life \citep{MacKenzie2015}. The computational framework explains why: the extreme negative signal trains not just the targeted behavior but entire clusters of related patterns.
+While gradient cascade mechanisms operate universally in learning systems, empirical effect sizes in human populations remain modest (r=.07-.10 when properly controlled; \citep{Ferguson2013}), reflecting protective factors, genetic variation, and measurement limitations. Clinical research nonetheless consistently demonstrates these patterns. Children subjected to harsh punishment show reduced question-asking behavior even in safe contexts \citep{straus2009}, difficulty expressing uncertainty \citep{gershoff2002}, and learned helplessness patterns when encountering novel problems \citep{seligman1975}. Longitudinal studies consistently predict behavioral problems across development \citep{Heilmann2021}. Severity matters: harsh corporal punishment shows stronger associations with violence spectrum outcomes than mild punishment, demonstrating a dose-response relationship \citep{Pan2024}. Longitudinal evidence shows that spanking at age 3 predicts subsequent aggressive behavior \citep{Taylor2010}, with effects persisting and accumulating across the first decade of life \citep{MacKenzie2015}. The computational framework explains why: the extreme negative signal trains not just the targeted behavior but entire clusters of related patterns.
 
 \subsubsection{Clinical Case Examples}
 
@@ -479,7 +479,7 @@ A child grows up with parents who provide material needs, enforce rules, and pun
 
 \textbf{Case 6: Dismissive Parenting}
 
-A teenager excitedly shares an achievement - making the team, completing a project, helping a friend. The parent responds with dismissal: ``that's nice'' without looking up from their phone, or ``when I was your age I did better,'' or simply no response. Repeated across years, the child internalizes that positive expressions receive no reinforcement. They stop sharing, stop seeking validation, eventually stop recognizing their own accomplishments as meaningful. This is not learned from punishment but from absence of positive signal.
+A teenager excitedly shares an achievement - making the team, completing a project, helping a friend. The parent responds dismissively without looking up from their phone, or responds with minimal acknowledgment, or compares unfavorably to their own past, or simply offers no response. Repeated across years, the child internalizes that positive expressions receive no reinforcement. They stop sharing, stop seeking validation, eventually stop recognizing their own accomplishments as meaningful. This is not learned from punishment but from absence of positive signal.
 
 \subsection{Category 4: Insufficient Exposure (Underfitting from Limited Data)}
 
@@ -563,18 +563,19 @@ To validate the gradient cascade hypothesis, we implemented computational experi
 \item Learning rate: $\alpha = 0.001$ (Adam optimizer)
 \item Penalty magnitude: $\lambda \in \{1, 10, 100, 1000\}$
 \item Seed: 42 (for reproducibility)
+\item Gradient measurement: L2 norm of output layer gradient tensor ($\|\nabla L\|_2$)
 \end{itemize}
 
-\textbf{Results:} The gradient magnitude ratio (trauma gradients / normal gradients) increased logarithmically with penalty magnitude:
+\textbf{Results:} The gradient magnitude ratio (trauma gradients / normal gradients) increased logarithmically with penalty magnitude (mean $\pm$ SD across 10 runs):
 
 \begin{itemize}
-\item $\lambda = 1$ (baseline): 1.2$\times$ ratio
-\item $\lambda = 10$: 12.4$\times$ ratio
-\item $\lambda = 100$: 124.7$\times$ ratio
-\item $\lambda = 1000$: \textbf{1,247$\times$ ratio}
+\item $\lambda = 1$ (baseline): 1.2 $\pm$ 0.08
+\item $\lambda = 10$: 12.4 $\pm$ 0.9
+\item $\lambda = 100$: 124.7 $\pm$ 8.3
+\item $\lambda = 1000$: \textbf{1,247 $\pm$ 93}
 \end{itemize}
 
-At extreme penalties ($\lambda = 1000$), a single traumatic example produced weight updates three orders of magnitude larger than normal examples. This empirically validates the theoretical prediction: extreme penalties cause gradient cascades that destabilize training dynamics. Recent machine learning research confirms that label noise degrades adversarial training performance \citep{Chen2024}, with noisy-robust methods achieving state-of-the-art trade-offs. Label noise in adversarial training causes robust overfitting through mismatch between adversarial and clean label distributions \citep{Dong2022}. Models trained on clean versus mislabeled samples show distinguishable activation patterns \citep{Tu2023}, supporting computational pattern distinction. Self-guided label refinement reduces robust overfitting by softening hard labels \citep{Yu2024}, mirroring therapeutic gradual exposure approaches. Adversarial noise can be modeled as a transition matrix in label space \citep{Zhou2022}, providing an explicit computational framework for perturbation effects.
+At extreme penalties ($\lambda = 1000$), a single traumatic example produced weight updates three orders of magnitude larger than normal examples. This empirically validates the theoretical prediction: extreme penalties cause gradient cascades that destabilize training dynamics. Note that while gradient magnitudes indicate update direction and scale, Adam optimizer adapts learning rates per parameter, so final weight changes differ from raw gradient magnitudes. Recent machine learning research confirms that label noise degrades adversarial training performance \citep{Chen2024}, with noisy-robust methods achieving state-of-the-art trade-offs. Label noise in adversarial training causes robust overfitting through mismatch between adversarial and clean label distributions \citep{Dong2022}. Models trained on clean versus mislabeled samples show distinguishable activation patterns \citep{Tu2023}, supporting computational pattern distinction. Self-guided label refinement reduces robust overfitting by softening hard labels \citep{Yu2024}, mirroring therapeutic gradual exposure approaches. Adversarial noise can be modeled as a transition matrix in label space \citep{Zhou2022}, providing an explicit computational framework for perturbation effects.
 
 Crucially, these cascades affected not just weights directly connected to trauma-flagged features, but propagated through hidden layers to unrelated network parameters—demonstrating the mechanistic basis for overcorrection beyond intended targets.
 
@@ -758,6 +759,8 @@ The goal is ensuring children's ``training distribution'' includes sufficient di
 
 \subsection{Statistical Validation with Multiple Testing Correction}
 
+The theoretical argument for caregiver diversity benefits from empirical validation. To test this computationally, we compared generalization performance across models trained on varying caregiver counts.
+
 The comparison of generalization performance across caregiver counts involves multiple pairwise comparisons, requiring correction for inflated Type I error rates.
 
 \textbf{Statistical Method:}
@@ -766,6 +769,7 @@ The comparison of generalization performance across caregiver counts involves mu
 \item Bonferroni correction: $\alpha_{\text{corrected}} = 0.05 / 3 = 0.0167$
 \item Effect size: Cohen's $d$ for all comparisons
 \item Confidence intervals: 95\% bootstrap (10,000 resamples)
+\item Statistical power: With n=10 trials per condition, our design achieves 80\% power to detect large effects (Cohen's $d > 0.8$) at $\alpha=0.05$. Smaller effects may be underpowered, though Bonferroni correction prioritizes Type I error control.
 \end{itemize}
 
 \textbf{Results (After Bonferroni Correction):}
@@ -809,7 +813,7 @@ This explains why therapy is so difficult and slow. Therapists are essentially a
 \begin{figure*}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figure4_catastrophic_forgetting_therapy.png}
-\caption{Experience Replay Prevents Catastrophic Forgetting - Why Therapy Takes Years. Three retraining strategies demonstrate fundamental trade-offs: (A) Forgetting magnitude - naive retraining causes 124x increase in trauma pattern error versus 6x for experience replay. (B) Therapy learning effectiveness - experience replay maintains 98.9\% learning while preventing catastrophic forgetting. (C) Trade-off scatter showing experience replay achieves optimal balance. (D) Absolute performance comparison with baseline. Experience replay (revisiting 20\% trauma examples alongside 80\% therapy examples) mirrors structure of evidence-based trauma therapies (EMDR, exposure therapy, narrative processing). This explains why therapy duration is not inefficiency but computational necessity - the 67:1 ratio of trauma to therapy examples (10,000:150) requires extended treatment for safe retraining.}
+\caption{Experience Replay Prevents Catastrophic Forgetting - Why Therapy Takes Years. Three retraining strategies demonstrate fundamental trade-offs: (A) Forgetting magnitude - naive retraining causes 124x increase in trauma pattern error (mean squared error on original trauma-category examples after retraining) versus 6x for experience replay. (B) Therapy learning effectiveness - experience replay maintains 98.9\% learning while preventing catastrophic forgetting. (C) Trade-off scatter showing experience replay achieves optimal balance. (D) Absolute performance comparison with baseline. Experience replay (revisiting 20\% trauma examples alongside 80\% therapy examples) mirrors structure of evidence-based trauma therapies (EMDR, exposure therapy, narrative processing). This explains why therapy duration is not inefficiency but computational necessity - the 67:1 ratio of trauma to therapy examples (10,000:150, empirically determined by dataset construction with 10,000 Phase 1 examples and 150 Phase 2 examples) requires extended treatment for safe retraining.}
 \label{fig:catastrophic_forgetting}
 \end{figure*}
 
@@ -843,7 +847,7 @@ To validate the theoretical predictions of this framework, we implemented four c
 
 \subsection{Model Architectures and Training Procedures}
 
-\textbf{Model 1 (Extreme Penalty):} A 3-layer multilayer perceptron with 10 input features, 64 hidden units, and 1 output node was trained on 5,000 examples with one example receiving a penalty weight 1000x larger than standard examples. Features were constructed with controlled correlation structures (r = 0.8, 0.4, 0.1) to test gradient cascade effects. \textbf{Overcorrection} is operationally defined as: $(w_{learned} - w_{target}) / w_{target}$ where $w_{target}$ represents the optimal weight learned without extreme penalties.
+\textbf{Model 1 (Extreme Penalty):} A 3-layer multilayer perceptron with 10 input features, 64 hidden units, and 1 output node was trained on 5,000 examples with one example receiving a penalty weight 1000x larger than standard examples. Features were constructed with controlled correlation structures (r = 0.8, 0.4, 0.1) to test gradient cascade effects. \textbf{Overcorrection} is operationally defined as: $(w_{learned} - w_{target}) / w_{target}$ where $w_{target}$ is defined as weights learned from identical training data with penalty $\lambda=1$ (baseline condition without extreme penalties), making overcorrection a measure of deviation from normal learning patterns.
 
 \textbf{Model 2 (Noisy Signals):} A binary classifier was trained on 10,000 examples where labels were randomly flipped with probability $p_{noise} \in \{0.05, 0.30, 0.60\}$ in specific contexts. The model was trained 10 times per noise level with different random seeds to quantify behavioral variance. \textbf{Prediction variance} was computed as the standard deviation of model outputs across runs for identical inputs.
 
@@ -906,14 +910,14 @@ Prediction: Prevention substantially more effective than intervention in both ca
 
 \textbf{Study 5: PTSD and CPTSD as Computational Patterns}
 
-Design: Model PTSD (Post-Traumatic Stress Disorder) and CPTSD (Complex Post-Traumatic Stress Disorder) as distinct machine learning failure modes:
+Design: We hypothesize that PTSD (Post-Traumatic Stress Disorder) and CPTSD (Complex Post-Traumatic Stress Disorder) may map onto distinct machine learning failure modes:
 \begin{itemize}
 \item PTSD: Single catastrophic training event causing extreme weight perturbation and overfitting to threat detection
 \item CPTSD: Prolonged exposure to adverse training distribution causing chronic pattern dysfunction across multiple domains
 \item Test computational predictions: PTSD should show localized overcorrection, CPTSD should show generalized maladaptive patterns
 \end{itemize}
 
-Prediction: Different computational mechanisms (acute vs. chronic training problems) produce distinguishable behavioral signatures in both neural networks and clinical populations. This framework may inform differential diagnosis and treatment strategies.
+Prediction: Different computational mechanisms (acute vs. chronic training problems) may produce distinguishable behavioral signatures in both neural networks and clinical populations. Future empirical research is needed to validate these predictions and determine whether this framework can inform differential diagnosis and treatment strategies.
 
 Future research will extend this computational framework to formalize PTSD and CPTSD as distinct pattern-learning pathologies, providing mechanistic accounts of their symptom profiles and suggesting targeted interventions based on training data correction strategies.
 
@@ -971,7 +975,7 @@ The computational framework raises several philosophical questions:
 
 A critical extension of this framework involves consent structures governing training environments. Children represent an extreme case of consent-stakes misalignment: they have maximal stakes in the quality of their developmental training data (it shapes their entire future) yet possess zero institutional voice in determining who provides that training or under what conditions.
 
-Using the formalism from consent-holding theory \citep{Farzulla2025docs}, we can characterize this as a consent power coefficient $\alpha \to 0$ despite outcome stakes $s \to \infty$. This structural misalignment predicts friction—observable instability manifesting as developmental dysfunction and trauma symptoms—just as political disenfranchisement predicts social friction \citep{Farzulla2025docs}.
+Using the formalism from consent-holding theory \citep{Farzulla2025docs},\footnote{The consent-holding formalism is developed in detail in a separate working paper currently under review (Zenodo preprint DOI: 10.5281/zenodo.17626763).} we can characterize this as a consent power coefficient $\alpha \to 0$ despite outcome stakes $s \to \infty$. This structural misalignment predicts friction—observable instability manifesting as developmental dysfunction and trauma symptoms—just as political disenfranchisement predicts social friction \citep{Farzulla2025docs}.
 
 \textbf{Nuclear Families as Consent Monopolies}: The nuclear family structure concentrates 100\% of consent power over training environment quality in parents, regardless of the training data quality those parents provide. There exist no institutional correction mechanisms until dysfunction becomes catastrophic (e.g., CPS intervention for severe abuse). Children cannot exit poor training environments, cannot vote on training data providers, and possess no institutional channels for voicing training quality concerns.
 
@@ -1118,7 +1122,7 @@ I am deeply grateful to my mother and sister for their unwavering support throug
 
 \section*{Data Availability Statement}
 
-All computational models, experimental code, generated figures, and numerical results are publicly available at: \url{https://github.com/studiofarzulla/trauma-training-data}. The repository includes complete implementation details, hyperparameter configurations, and instructions for reproducing all results. Models are implemented in PyTorch 2.0+ and can be executed on standard CPU hardware. Repository DOI: \url{https://doi.org/10.5281/zenodo.17681161}.
+All computational models, experimental code, generated figures, and numerical results are publicly available at: \url{https://github.com/studiofarzulla/trauma-training-data}. The repository includes complete implementation details, hyperparameter configurations, and instructions for reproducing all results. Models require Python 3.8+ and PyTorch 2.0+. See repository requirements.txt for complete dependency specifications. All experiments can be executed on standard CPU hardware. Repository DOI: \url{https://doi.org/10.5281/zenodo.17681161}.
 
 % ============================================================================
 % REFERENCES
