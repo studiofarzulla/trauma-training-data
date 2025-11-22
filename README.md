@@ -1,4 +1,4 @@
-# Trauma as Bad Training Data: A Computational Framework for Developmental Psychology
+# Gradient Descent Framework: Trauma as Adversarial Training Conditions
 
 
 **Author:** Murad Farzulla
