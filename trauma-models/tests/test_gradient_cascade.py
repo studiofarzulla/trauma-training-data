@@ -10,6 +10,8 @@ import torch
 import numpy as np
 from trauma_models.extreme_penalty.model import ExtremePenaltyModel
 from trauma_models.extreme_penalty.dataset import generate_dataset
+from trauma_models.limited_dataset.model import LimitedDatasetModel
+from trauma_models.catastrophic_forgetting.model import CatastrophicForgettingModel
 
 
 class TestGradientCascade:

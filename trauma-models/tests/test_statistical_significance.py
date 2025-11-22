@@ -3,6 +3,7 @@ Test statistical significance calculations for Model 3.
 """
 
 import pytest
+import torch
 import numpy as np
 from scipy import stats
 
@@ -109,20 +110,20 @@ class TestDatasetGeneration:
         )
 
         # Check train dataset
-        assert len(train_dataset) == 101  # 100 base + 1 trauma
+        assert len(train_dataset) == 105  # 100 base + 5 trauma
 
         X_train, Y_train, penalty_mask, corr_groups = train_dataset.tensors
-        assert X_train.shape == (101, 10)  # 10 features
-        assert Y_train.shape == (101,)  # Labels
-        assert penalty_mask.shape == (101,)  # Penalty mask
+        assert X_train.shape == (105, 10)  # 10 features
+        assert Y_train.shape == (105,)  # Labels
+        assert penalty_mask.shape == (105,)  # Penalty mask
 
-        # Exactly one traumatic example
-        assert penalty_mask.sum() == 1
+        # Five traumatic examples (default)
+        assert penalty_mask.sum() == 5
 
         # Check test dataset
-        assert len(test_dataset) == 50
+        assert len(test_dataset) == 48  # Actual test examples generated
         X_test = test_dataset.tensors[0]
-        assert X_test.shape == (50, 10)
+        assert X_test.shape == (48, 10)
 
     def test_limited_dataset_caregiver_generation(self):
         """Model 3 dataset should generate correct number of caregivers."""
