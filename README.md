@@ -3,14 +3,14 @@
 
 **Author:** Murad Farzulla
 **Affiliation:** Farzulla Research
-**Status:** v2.0.0 Official Release
+**Status:** v2.0.3 Official Release
 **Release Date:** November 22, 2025
 
 **DOIs:**
 - Paper: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17681336.svg)](https://doi.org/10.5281/zenodo.17681336)
 - Repository: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17681161.svg)](https://doi.org/10.5281/zenodo.17681161)
 
-**Latest Version (v2.0.0):** Publication-ready release with complete peer review fixes, enhanced empirical grounding (71 references), and comprehensive scientific rigor improvements.
+**Latest Version (v2.0.3):** Publication-ready release with corrected figure statistics, complete peer review fixes, enhanced empirical grounding (71 references), and comprehensive scientific rigor improvements.
 
 ## Abstract
 
@@ -18,7 +18,7 @@ This essay proposes a computational framework for understanding childhood develo
 
 ## Contents
 
-- **trauma-training-data-essay.pdf** 
+- **trauma-training-data-essay-v2.0.3.pdf** 
 - **trauma-training-data.bib** - BibTeX bibliography 
 - **trauma-models/** - Computational models subdirectory (4 PyTorch implementations with validation)
 - **CHANGELOG.md** - Version history and release notes
@@ -195,8 +195,8 @@ Under the following terms:
 ```
 trauma-training-data/
 ├── trauma-training-data-essay.md       # Full essay (11,432 words)
-├── trauma-training-data-essay.tex      # LaTeX manuscript
-├── trauma-training-data-essay.pdf      # Compiled PDF
+├── trauma-training-data-essay-v2.0.3.tex      # LaTeX manuscript
+├── trauma-training-data-essay-v2.0.3.pdf      # Compiled PDF
 ├── trauma-training-data.bib            # Bibliography (30+ references)
 ├── trauma-models/                      # Computational models subdirectory
 │   ├── trauma_models/                  # Python package
