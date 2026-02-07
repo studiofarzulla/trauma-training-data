@@ -1,237 +1,101 @@
-# Gradient Descent Framework: Trauma as Adversarial Training Conditions
+# Training Data and the Maladaptive Mind
 
+**A Computational Framework for Understanding Developmental Trauma**
 
-**Author:** Murad Farzulla
-**Affiliation:** Farzulla Research
-**Status:** v2.0.3 Official Release
-**Release Date:** November 22, 2025
+[![DOI](https://img.shields.io/badge/DOI-10.21203%2Frs.3.rs--8634152%2Fv1-blue.svg)](https://doi.org/10.21203/rs.3.rs-8634152/v1)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+[![Status](https://img.shields.io/badge/Status-Under_Review-yellow.svg)](https://doi.org/10.21203/rs.3.rs-8634152/v1)
 
-**DOIs:**
-- Paper: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17681336.svg)](https://doi.org/10.5281/zenodo.17681336)
-- Repository: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17681161.svg)](https://doi.org/10.5281/zenodo.17681161)
+**Working Paper DP-2501** | [Dissensus AI](https://dissensus.ai)
 
-**Latest Version (v2.0.3):** Publication-ready release with corrected figure statistics, complete peer review fixes, enhanced empirical grounding (71 references), and comprehensive scientific rigor improvements.
+Currently under review at **Humanities & Social Sciences Communications** (Nature).
 
 ## Abstract
 
-This essay proposes a computational framework for understanding childhood developmental trauma by reframing it as "bad training data" in a learning system. Drawing parallels between machine learning training problems and developmental psychology, it offers a mechanistic account that removes moral judgment while preserving insight into how adverse childhood experiences shape adult behavior and cognition.
+Traditional trauma theory frames adverse childhood experiences as damaging events that require healing. This conceptualization, while emotionally resonant, often obscures mechanistic understanding and limits actionable intervention strategies. We propose a computational reframing: trauma represents maladaptive learned patterns arising from suboptimal training environments, functionally equivalent to problems observed in machine learning systems trained on poor-quality data. This framework identifies four distinct categories of developmental "training data problems": direct negative experiences (high-magnitude negative weights), indirect negative experiences (noisy training signals), absence of positive experiences (insufficient positive examples), and limited exposure (underfitting from restricted data). We extend this framework to model dissociation as meta-learned protective suppression -- second-order learning where the system learns that cognitive engagement itself predicts overwhelm, producing preemptive processing suppression. This meta-learning model provides mechanistic grounding for the clinical distinction between PTSD (catastrophic single-event learning with localized weight perturbation) and CPTSD (chronic adversarial training with systematic weight landscape distortion), generating testable predictions for differential diagnosis and treatment response. We demonstrate that extreme penalties produce overcorrection and weight cascades in both artificial and biological neural networks, and argue that nuclear family structures constitute limited training datasets prone to overfitting. This computational lens removes emotional defensiveness, provides harder-to-deny mechanistic explanations, and suggests tractable engineering solutions including increased caregiver diversity and community-based child-rearing.
 
-## Contents
+## Key Findings
 
-- **trauma-training-data-essay-v2.0.3.pdf** 
-- **trauma-training-data.bib** - BibTeX bibliography 
-- **trauma-models/** - Computational models subdirectory (4 PyTorch implementations with validation)
-- **CHANGELOG.md** - Version history and release notes
-- **CITATION.cff** - Citation metadata for academic reference
-- **LICENSE** - Creative Commons Attribution 4.0 International (CC BY 4.0)
-
-## Key Framework
-
-The essay categorizes developmental trauma through four ML training data problems:
-
-1. **Direct Negative Data**: Abuse as actively harmful training signals
-2. **Indirect Negative Data**: Witnessing trauma, absorbing environmental stress
-3. **Absent Positive Data**: Neglect as missing crucial training examples
-4. **Limited Data Diversity**: Restricted exposure (nuclear family isolation)
-
-## Key Contributions
-
-1. **Novel Typology**: Four-category classification of developmental trauma via training data quality
-2. **Mechanistic Clarity**: Explains "why" trauma persists without moral blame
-3. **Policy Implications**: Suggests prevention strategies (alloparenting, co-housing) based on training data diversity
-4. **Interdisciplinary Integration**: Bridges ML, neuroscience, attachment theory, developmental psychology
-
-## v2.0.0 Release Highlights
-
-Publication-ready release with comprehensive scientific rigor improvements:
-
-### New Features
-
-**Empirical Validation:**
-- **Gradient cascade validation** (Section 4.2): Measured 1,247× gradient amplification at extreme penalties
-- **Bonferroni statistical correction** (Section 5): Nuclear family vs community remains significant (p=0.0012, d=3.08)
-- **Reproducibility documentation** (Section 6): Complete infrastructure for verifying all claims
-
-**Code Quality:**
-- **26-test suite** with 75% coverage validating all models
-- **Named constants module** eliminating magic numbers
-- **Professional logging framework** for experiment tracking
-- **Fixed-seed reproducibility** verified across all experiments
-
-**Paper Enhancements:**
-- Enhanced with three new subsections documenting empirical validation
-- Statistical rigor improved with multiple testing correction
-- All figures regenerated with latest code (27 pages, 2.57MB)
-
-### What's New Since v1.0
-
-- Comprehensive unit tests proving reproducibility
-- Empirical gradient tracking validates theoretical claims
-- Statistical significance survives Bonferroni correction
-- Complete instructions for reproducing all experiments
-- Enhanced paper now publication-ready for peer review
-
-See [CHANGELOG.md](CHANGELOG.md) for complete details.
+| Finding | Result |
+|---------|--------|
+| Extreme penalty gradient amplification | 1,247x at extreme penalties |
+| Nuclear vs community significance | p=0.0012, d=3.08 (survives Bonferroni correction) |
+| Noisy signals confidence collapse | At 60% noise threshold |
+| Limited dataset generalization gap | Scales as 1/sqrt(num_caregivers) |
+| Experience replay retention | 93% retention with 71% new learning |
 
 ## Computational Models
 
-The **trauma-models/** subdirectory contains four PyTorch implementations validating the framework's predictions:
+Four PyTorch implementations validating the framework:
 
-### Model 1: Extreme Penalty (Gradient Cascade)
-- Single traumatic event → 1000x penalty → gradient cascade
-- **Result:** Overcorrection scales logarithmically, spreads to r=0.8 correlated features (42% overcorrection)
-
-### Model 2: Noisy Signals (Inconsistent Feedback)
-- Training labels flipped with probability p_noise
-- **Result:** Prediction variance scales as sqrt(p_noise), confidence collapse at 60% noise
-
-### Model 3: Limited Dataset (Overfitting)
-- Train on 2, 5, or 10 synthetic caregivers → test on 50 novel caregivers
-- **Result:** Generalization gap ~ 1/sqrt(num_caregivers), **p=0.005 across 10 trials**
-
-### Model 4: Catastrophic Forgetting (Therapy Failure)
-- Phase 1 (10k examples) → Phase 2 (150 examples) with different strategies
-- **Result:** Experience replay balances retention (93%) and new learning (71%)
-
-See **trauma-models/README.md** for installation and execution instructions.
-
-## Testable Predictions
-
-The framework generates several empirical predictions (Section 6.1):
-
-1. Intervention timing effects mirror retraining vs training from scratch
-2. Caregiver diversity correlates with outcome resilience
-3. ML analogs can model developmental trajectories
-4. Prevention vs intervention cost asymmetries
-
-## Feedback Welcome
-
-This essay is published for academic discourse and feedback. Comments, critiques, and engagement welcome via:
-- GitHub Issues on this repository
-- Farzulla Research: https://farzulla.org
-- Studio Farzulla: https://farzulla.com
-
-## Installation and Running Models
-
-### Quick Start
-
-```bash
-# Clone the repository
-git clone https://github.com/studiofarzulla/trauma-training-data.git
-cd trauma-training-data/trauma-models
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Run all experiments (5-10 minutes on CPU)
-./run_all_experiments.sh
-```
-
-### Requirements
-
-- Python 3.10+
-- PyTorch 2.0+
-- NumPy, SciPy, Pandas
-- Matplotlib, Seaborn
-
-### Running Individual Models
-
-```bash
-# From trauma-models/ directory
-python -m trauma_models.extreme_penalty.experiment          # Model 1
-python -m trauma_models.noisy_signals.experiment            # Model 2
-python -m trauma_models.limited_dataset.experiment          # Model 3
-python -m trauma_models.catastrophic_forgetting.experiment  # Model 4
-```
-
-Outputs saved to `trauma-models/outputs/` with figures (PNG, 300 DPI) and numerical results (CSV).
-
-## Citation
-
-If you use this research, please cite as:
-
-```bibtex
-@article{farzulla2025trauma,
-  title={Trauma as Bad Training Data: A Computational Framework for Developmental Psychology},
-  author={Farzulla, Murad},
-  year={2025},
-  journal={Zenodo},
-  doi={10.5281/zenodo.17573637},
-  url={https://doi.org/10.5281/zenodo.17573637},
-  note={v1.0 Official Release}
-}
-```
-
-**Plain text citation:**
-```
-Farzulla, M. (2025). Trauma as Bad Training Data: A Computational Framework for
-Developmental Psychology (Version 1.0.0). Farzulla Research.
-https://doi.org/10.5281/zenodo.17573637
-```
-
-See **CITATION.cff** for machine-readable citation metadata.
-
-## License
-
-This work is licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
-
-You are free to:
-- Share — copy and redistribute the material in any medium or format
-- Adapt — remix, transform, and build upon the material for any purpose, even commercially
-
-Under the following terms:
-- Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made
-
-**Note:** Computational models in trauma-models/ are licensed under MIT License. See trauma-models/LICENSE for details.
-
----
+1. **Extreme Penalty** -- Single traumatic event with 1000x penalty produces gradient cascade and overcorrection
+2. **Noisy Signals** -- Inconsistent feedback: prediction variance scales as sqrt(p_noise)
+3. **Limited Dataset** -- Train on 2-10 caregivers, test on 50: generalization gap ~ 1/sqrt(N)
+4. **Catastrophic Forgetting** -- Experience replay balances old retention (93%) with new learning (71%)
 
 ## Repository Structure
 
 ```
 trauma-training-data/
-├── trauma-training-data-essay.md       # Full essay (11,432 words)
-├── trauma-training-data-essay-v2.0.3.tex      # LaTeX manuscript
-├── trauma-training-data-essay-v2.0.3.pdf      # Compiled PDF
-├── trauma-training-data.bib            # Bibliography (30+ references)
-├── trauma-models/                      # Computational models subdirectory
-│   ├── trauma_models/                  # Python package
-│   │   ├── core/                       # Shared base classes
-│   │   ├── extreme_penalty/            # Model 1
-│   │   ├── noisy_signals/              # Model 2
-│   │   ├── limited_dataset/            # Model 3
-│   │   └── catastrophic_forgetting/    # Model 4
-│   ├── outputs/                        # Generated results
-│   │   ├── figures/                    # Publication-ready plots
-│   │   └── data/                       # Numerical results
-│   ├── requirements.txt                # Python dependencies
-│   └── run_all_experiments.sh          # Convenience runner
-├── README.md                           # This file
-├── CHANGELOG.md                        # Version history
-├── VERSION                             # Version identifier (1.0.0)
-├── CITATION.cff                        # Citation metadata
-├── LICENSE                             # CC BY 4.0 license
-└── CLAUDE.md                           # Claude Code assistant guide
+├── paper/                      # LaTeX source and compiled PDF
+│   ├── trauma-arxiv.tex        # Preprint version (canonical)
+│   └── figures/                # Paper figures
+├── trauma-models/              # Computational models (PyTorch)
+│   ├── trauma_models/          # Python package
+│   │   ├── core/               # Shared base classes
+│   │   ├── extreme_penalty/    # Model 1
+│   │   ├── noisy_signals/      # Model 2
+│   │   ├── limited_dataset/    # Model 3
+│   │   └── catastrophic_forgetting/  # Model 4
+│   ├── outputs/                # Generated results and figures
+│   ├── requirements.txt        # Python dependencies
+│   └── run_all_experiments.sh  # Convenience runner
+├── CITATION.cff                # Citation metadata
+└── LICENSE                     # CC BY 4.0
 ```
 
----
+## Replication
 
-## Important Notes
+```bash
+cd trauma-models/
+pip install -r requirements.txt
 
-**Research Context:** This project demonstrates how computational metaphors can illuminate psychological phenomena. The models are educational tools and research prototypes, not clinical diagnostic instruments.
+# Run all experiments
+./run_all_experiments.sh
 
-**Ethical Statement:** All simulations model abstract training dynamics, not real children. This work is purely computational and theoretical research.
+# Or individually
+python -m trauma_models.extreme_penalty.experiment
+python -m trauma_models.noisy_signals.experiment
+python -m trauma_models.limited_dataset.experiment
+python -m trauma_models.catastrophic_forgetting.experiment
+```
 
-**Target Venues:**
-- Primary: Zenodo preprint (DOI assignment)
-- Secondary: arXiv (cs.AI or q-bio.NC)
-- Future: Computational Psychiatry, Nature Human Behaviour
+Requirements: Python 3.10+, PyTorch 2.0+
 
-**This framework is proposed as a lens for understanding developmental trauma, not as a replacement for existing clinical or therapeutic approaches.**
+## Keywords
 
+Trauma, Machine Learning, Computational Cognitive Science, Philosophy of Mind, Developmental Psychology
 
+## Citation
 
+```bibtex
+@article{farzulla2025trauma,
+  title={Training Data and the Maladaptive Mind: How Machine Learning Illuminates Developmental Psychopathology},
+  author={Farzulla, Murad},
+  year={2025},
+  doi={10.21203/rs.3.rs-8634152/v1},
+  url={https://doi.org/10.21203/rs.3.rs-8634152/v1},
+  note={Under Review at Humanities \& Social Sciences Communications (Nature)}
+}
+```
+
+## Authors
+
+- **Murad Farzulla** -- [Dissensus AI](https://dissensus.ai) & King's College London
+  - ORCID: [0009-0002-7164-8704](https://orcid.org/0009-0002-7164-8704)
+  - Email: murad@dissensus.ai
+
+## License
+
+Paper content: [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)
+Computational models: [MIT License](trauma-models/LICENSE)
